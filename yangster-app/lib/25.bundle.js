@@ -47,7 +47,6 @@ var FileUri;
             return fsPath(new uri_1.default(uri));
         }
         else {
-            // tslint:disable-next-line:no-any
             return uri.codeUri.fsPath;
         }
     }
@@ -82,12 +81,9 @@ var FileUri;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -150,8 +146,7 @@ var BlameCommands;
 (function (BlameCommands) {
     BlameCommands.TOGGLE_GIT_ANNOTATIONS = {
         id: 'git.editor.toggle.annotations',
-        category: 'Git',
-        label: 'Toggle Blame Annotations'
+        label: 'Git: Toggle Blame Annotations'
     };
     BlameCommands.CLEAR_GIT_ANNOTATIONS = {
         id: 'git.editor.clear.annotations'
@@ -263,6 +258,7 @@ var BlameContribution = /** @class */ (function () {
     BlameContribution.prototype.registerMenus = function (menus) {
         menus.registerMenuAction(git_view_contribution_1.EDITOR_CONTEXT_MENU_GIT, {
             commandId: BlameCommands.TOGGLE_GIT_ANNOTATIONS.id,
+            label: BlameCommands.TOGGLE_GIT_ANNOTATIONS.label.slice('Git: '.length)
         });
     };
     BlameContribution.prototype.registerKeybindings = function (keybindings) {
@@ -880,12 +876,9 @@ exports.bindBlame = bindBlame;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -977,8 +970,7 @@ var GitDiffCommands;
 (function (GitDiffCommands) {
     GitDiffCommands.OPEN_FILE_DIFF = {
         id: 'git-diff:open-file-diff',
-        category: 'Git Diff',
-        label: 'Compare With...'
+        label: 'Diff: Compare With...'
     };
 })(GitDiffCommands = exports.GitDiffCommands || (exports.GitDiffCommands = {}));
 var GitDiffContribution = /** @class */ (function (_super) {
@@ -1168,28 +1160,22 @@ exports.bindGitDiffModule = bindGitDiffModule;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1885,12 +1871,9 @@ var ContentLines;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2082,12 +2065,9 @@ exports.DirtyDiffContribution = DirtyDiffContribution;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2202,16 +2182,13 @@ exports.DirtyDiffDecorator = DirtyDiffDecorator;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2293,10 +2270,16 @@ var DirtyDiffManager = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         this.editorManager.onCreated(function (e) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            return [2 /*return*/, this.handleEditorCreated(e)];
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, this.handleEditorCreated(e)];
+                                case 1: return [2 /*return*/, _a.sent()];
+                            }
                         }); }); });
                         this.repositoryTracker.onGitEvent(throttle(function (event) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            return [2 /*return*/, this.handleGitStatusUpdate(event.source, event.status)];
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, this.handleGitStatusUpdate(event.source, event.status)];
+                                case 1: return [2 /*return*/, _a.sent()];
+                            }
                         }); }); }, 500));
                         gitStatus = this.repositoryTracker.selectedRepositoryStatus;
                         repository = this.repositoryTracker.selectedRepository;
@@ -2490,7 +2473,7 @@ var DirtyDiffModel = /** @class */ (function () {
                     this.enabled = enabled;
                     this.update();
                 }
-                if (preferenceName === 'git.editor.dirtyDiff.linesLimit') {
+                if (preferenceName === 'git.editor.dirtydiff.linesLimit') {
                     this.update();
                 }
                 return [2 /*return*/];
@@ -2499,7 +2482,7 @@ var DirtyDiffModel = /** @class */ (function () {
     };
     Object.defineProperty(DirtyDiffModel.prototype, "linesLimit", {
         get: function () {
-            var limit = this.preferences['git.editor.dirtyDiff.linesLimit'];
+            var limit = this.preferences['git.editor.dirtydiff.linesLimit'];
             return limit > 0 ? limit : Number.MAX_SAFE_INTEGER;
         },
         enumerable: true,
@@ -2602,11 +2585,20 @@ var DirtyDiffModel = /** @class */ (function () {
     };
     DirtyDiffModel.prototype.isInGitRepository = function (repository) {
         return __awaiter(this, void 0, void 0, function () {
-            var modelUri, repoUri;
-            return __generator(this, function (_a) {
-                modelUri = this.editor.uri.withoutScheme().toString();
-                repoUri = new uri_1.default(repository.localUri).withoutScheme().toString();
-                return [2 /*return*/, modelUri.startsWith(repoUri) && this.previousRevision.isVersionControlled()];
+            var modelUri, repoUri, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        modelUri = this.editor.uri.withoutScheme().toString();
+                        repoUri = new uri_1.default(repository.localUri).withoutScheme().toString();
+                        _a = modelUri.startsWith(repoUri);
+                        if (!_a) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.previousRevision.isVersionControlled()];
+                    case 1:
+                        _a = (_b.sent());
+                        _b.label = 2;
+                    case 2: return [2 /*return*/, _a];
+                }
             });
         });
     };
@@ -2825,16 +2817,13 @@ exports.GitCommitMessageValidator = GitCommitMessageValidator;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3278,12 +3267,9 @@ exports.default = new inversify_1.ContainerModule(function (bind) {
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -3562,7 +3548,7 @@ exports.GitConfigSchema = {
             'description': 'Show git decorations in the editor.',
             'default': true
         },
-        'git.editor.dirtyDiff.linesLimit': {
+        'git.editor.dirtydiff.linesLimit': {
             'type': 'number',
             'description': 'Do not show dirty diff decorations, if editor\'s line count exceeds this limit.',
             'default': 1000
@@ -3611,12 +3597,9 @@ exports.bindGitPreferences = bindGitPreferences;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -4401,16 +4384,13 @@ var SingleStringInputOpenItem = /** @class */ (function (_super) {
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5506,28 +5486,22 @@ exports.GitUriLabelProviderContribution = GitUriLabelProviderContribution;
 "use strict";
 
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5860,7 +5834,6 @@ var GitViewContribution = /** @class */ (function (_super) {
             isVisible: function () { return _this.syncService.canPublish(); }
         });
         registry.registerCommand(GIT_COMMANDS.CLONE, {
-            // tslint:disable-next-line:no-any
             execute: function (args) {
                 var _a;
                 var url = undefined;
@@ -6036,28 +6009,22 @@ exports.GitViewContribution = GitViewContribution;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7117,12 +7084,9 @@ exports.GitAvatarService = GitAvatarService;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7276,12 +7240,9 @@ exports.GitCommitDetailOpenHandler = GitCommitDetailOpenHandler;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7474,12 +7435,9 @@ exports.GitCommitDetailWidget = GitCommitDetailWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7559,32 +7517,30 @@ var uri_command_handler_1 = __webpack_require__(/*! @theia/core/lib/common/uri-c
 var git_repository_tracker_1 = __webpack_require__(/*! ../git-repository-tracker */ "../node_modules/@theia/git/lib/browser/git-repository-tracker.js");
 var git_repository_provider_1 = __webpack_require__(/*! ../git-repository-provider */ "../node_modules/@theia/git/lib/browser/git-repository-provider.js");
 var git_view_contribution_1 = __webpack_require__(/*! ../git-view-contribution */ "../node_modules/@theia/git/lib/browser/git-view-contribution.js");
-exports.GIT_HISTORY_ID = 'git-history';
-exports.GIT_HISTORY_LABEL = 'Git History';
-exports.GIT_HISTORY_TOGGLE_KEYBINDING = 'alt+h';
-exports.GIT_HISTORY_MAX_COUNT = 100;
 var GitHistoryCommands;
 (function (GitHistoryCommands) {
     GitHistoryCommands.OPEN_FILE_HISTORY = {
         id: 'git-history:open-file-history',
+        label: 'Git History'
     };
     GitHistoryCommands.OPEN_BRANCH_HISTORY = {
-        id: 'git-history:open-branch-history',
-        label: exports.GIT_HISTORY_LABEL
+        id: 'git-history:open-branch-history'
     };
 })(GitHistoryCommands = exports.GitHistoryCommands || (exports.GitHistoryCommands = {}));
+exports.GIT_HISTORY = 'git-history';
+exports.GIT_HISTORY_MAX_COUNT = 100;
 var GitHistoryContribution = /** @class */ (function (_super) {
     __extends(GitHistoryContribution, _super);
     function GitHistoryContribution() {
         return _super.call(this, {
-            widgetId: exports.GIT_HISTORY_ID,
-            widgetName: exports.GIT_HISTORY_LABEL,
+            widgetId: exports.GIT_HISTORY,
+            widgetName: 'Git History',
             defaultWidgetOptions: {
                 area: 'left',
                 rank: 400
             },
             toggleCommandId: GitHistoryCommands.OPEN_BRANCH_HISTORY.id,
-            toggleKeybinding: exports.GIT_HISTORY_TOGGLE_KEYBINDING
+            toggleKeybinding: 'alt+h'
         }) || this;
     }
     GitHistoryContribution.prototype.init = function () {
@@ -7608,28 +7564,12 @@ var GitHistoryContribution = /** @class */ (function (_super) {
             }
         });
     };
-    GitHistoryContribution.prototype.openView = function (args) {
-        return __awaiter(this, void 0, void 0, function () {
-            var widget;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, _super.prototype.openView.call(this, args)];
-                    case 1:
-                        widget = _a.sent();
-                        this.refreshWidget(args.uri);
-                        return [2 /*return*/, widget];
-                }
-            });
-        });
-    };
     GitHistoryContribution.prototype.registerMenus = function (menus) {
         menus.registerMenuAction(__spread(navigator_contribution_1.NAVIGATOR_CONTEXT_MENU, ['5_history']), {
-            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id,
-            label: exports.GIT_HISTORY_LABEL
+            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id
         });
         menus.registerMenuAction(git_view_contribution_1.EDITOR_CONTEXT_MENU_GIT, {
-            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id,
-            label: exports.GIT_HISTORY_LABEL
+            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id
         });
         _super.prototype.registerMenus.call(this, menus);
     };
@@ -7637,12 +7577,27 @@ var GitHistoryContribution = /** @class */ (function (_super) {
         var _this = this;
         commands.registerCommand(GitHistoryCommands.OPEN_FILE_HISTORY, this.newUriAwareCommandHandler({
             execute: function (uri) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                return [2 /*return*/, this.openView({ activate: true, uri: uri.toString() })];
+                return [2 /*return*/, this.showWidget(uri.toString())];
             }); }); },
             isEnabled: function (uri) { return !!_this.repositoryProvider.findRepository(uri); }
         }));
         commands.registerCommand(GitHistoryCommands.OPEN_BRANCH_HISTORY, {
-            execute: function () { return _this.openView({ activate: true, uri: undefined }); }
+            execute: function () { return _this.showWidget(undefined); }
+        });
+    };
+    GitHistoryContribution.prototype.showWidget = function (uri) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.openView({
+                            activate: true
+                        })];
+                    case 1:
+                        _a.sent();
+                        this.refreshWidget(uri);
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     GitHistoryContribution.prototype.refreshWidget = function (uri) {
@@ -7739,7 +7694,7 @@ function bindGitHistoryModule(bind) {
     bind(git_avatar_service_1.GitAvatarService).toSelf().inSingletonScope();
     bind(git_history_widget_1.GitHistoryWidget).toSelf();
     bind(browser_1.WidgetFactory).toDynamicValue(function (ctx) { return ({
-        id: git_history_contribution_1.GIT_HISTORY_ID,
+        id: git_history_contribution_1.GIT_HISTORY,
         createWidget: function () { return ctx.container.get(git_history_widget_1.GitHistoryWidget); }
     }); });
     bind(browser_1.WidgetFactory).toDynamicValue(function (ctx) { return ({
@@ -7786,28 +7741,22 @@ exports.bindGitHistoryModule = bindGitHistoryModule;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7905,7 +7854,6 @@ var git_widget_1 = __webpack_require__(/*! ../git-widget */ "../node_modules/@th
 var React = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 var GitCommitNode;
 (function (GitCommitNode) {
-    // tslint:disable-next-line:no-any
     function is(node) {
         return !!node && 'commitSha' in node && 'commitMessage' in node && 'fileChangeNodes' in node;
     }
@@ -7927,10 +7875,10 @@ var GitHistoryWidget = /** @class */ (function (_super) {
         _this.loadMoreRows = function (params) { return _this.doLoadMoreRows(params); };
         _this.renderCommit = function (commit) { return _this.doRenderCommit(commit); };
         _this.renderFileChangeList = function (fileChange) { return _this.doRenderFileChangeList(fileChange); };
-        _this.id = git_history_contribution_1.GIT_HISTORY_ID;
+        _this.id = git_history_contribution_1.GIT_HISTORY;
         _this.scrollContainer = 'git-history-list-container';
-        _this.title.label = git_history_contribution_1.GIT_HISTORY_LABEL;
-        _this.title.caption = git_history_contribution_1.GIT_HISTORY_LABEL;
+        _this.title.label = 'Git History';
+        _this.title.caption = 'Git History';
         _this.title.iconClass = 'fa git-history-tab-icon';
         _this.addClass('theia-git');
         _this.resetState();
@@ -7941,7 +7889,6 @@ var GitHistoryWidget = /** @class */ (function (_super) {
         var _this = this;
         _super.prototype.onAfterAttach.call(this, msg);
         this.addGitListNavigationKeyListeners(this.node);
-        // tslint:disable-next-line:no-any
         this.addEventListener(this.node, 'ps-scroll-y', function (e) {
             if (_this.listView && _this.listView.list && _this.listView.list.Grid) {
                 var scrollTop = e.target.scrollTop;
@@ -8219,9 +8166,8 @@ var GitHistoryWidget = /** @class */ (function (_super) {
         return list;
     };
     GitHistoryWidget.prototype.doHandleScroll = function (info) {
-        this.node.scrollTop = info.scrollTop;
+        this.node.scrollTo({ top: info.scrollTop });
     };
-    // tslint:disable-next-line:no-any
     GitHistoryWidget.prototype.doLoadMoreRows = function (params) {
         var _this = this;
         var resolver;
@@ -8732,7 +8678,6 @@ var GitStatusChangeEvent;
      * `true` if the argument is a `GitStatusEvent`, otherwise `false`.
      * @param event the argument to check whether it is a Git status change event or not.
      */
-    // tslint:disable-next-line:no-any
     function is(event) {
         return !!event && ('source' in event) && ('status' in event);
     }
@@ -9216,12 +9161,9 @@ __export(__webpack_require__(/*! ./navigator-decorator-service */ "../node_modul
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

@@ -83,20 +83,20 @@ __export(__webpack_require__(/*! ./variable-resolver-service */ "../node_modules
 "use strict";
 
 /********************************************************************************
- * Copyright (C) 2018 Ericsson and others.
- *
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License v. 2.0 which is available at
- * http://www.eclipse.org/legal/epl-2.0.
- *
- * This Source Code may also be made available under the following Secondary
- * Licenses when the conditions for such availability set forth in the Eclipse
- * Public License v. 2.0 are satisfied: GNU General Public License, version 2
- * with the GNU Classpath Exception which is available at
- * https://www.gnu.org/software/classpath/license.html.
- *
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- ********************************************************************************/
+  * Copyright (C) 2018 Ericsson and others.
+  *
+  * This program and the accompanying materials are made available under the
+  * terms of the Eclipse Public License v. 2.0 which is available at
+  * http://www.eclipse.org/legal/epl-2.0.
+  *
+  * This Source Code may also be made available under the following Secondary
+  * Licenses when the conditions for such availability set forth in the Eclipse
+  * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+  * with the GNU Classpath Exception which is available at
+  * https://www.gnu.org/software/classpath/license.html.
+  *
+  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+  ********************************************************************************/
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -328,12 +328,9 @@ exports.QuickOpenWorkspace = QuickOpenWorkspace;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -428,22 +425,18 @@ var workspace_delete_handler_1 = __webpack_require__(/*! ./workspace-delete-hand
 var validFilename = __webpack_require__(/*! valid-filename */ "../node_modules/valid-filename/index.js");
 var WorkspaceCommands;
 (function (WorkspaceCommands) {
-    var WORKSPACE_CATEGORY = 'Workspace';
-    var FILE_CATEGORY = 'File';
     // On Linux and Windows, both files and folders cannot be opened at the same time in electron.
     // `OPEN_FILE` and `OPEN_FOLDER` must be available only on Linux and Windows in electron.
     // `OPEN` must *not* be available on Windows and Linux in electron.
     // VS Code does the same. See: https://github.com/theia-ide/theia/pull/3202#issuecomment-430585357
     WorkspaceCommands.OPEN = {
         id: 'workspace:open',
-        category: FILE_CATEGORY,
         label: 'Open...',
         dialogLabel: 'Open'
     };
     // No `label`. Otherwise, it shows up in the `Command Palette`.
     WorkspaceCommands.OPEN_FILE = {
         id: 'workspace:openFile',
-        category: FILE_CATEGORY,
         dialogLabel: 'Open File'
     };
     WorkspaceCommands.OPEN_FOLDER = {
@@ -452,69 +445,56 @@ var WorkspaceCommands;
     };
     WorkspaceCommands.OPEN_WORKSPACE = {
         id: 'workspace:openWorkspace',
-        category: FILE_CATEGORY,
         label: 'Open Workspace...',
         dialogLabel: 'Open Workspace'
     };
     WorkspaceCommands.OPEN_RECENT_WORKSPACE = {
         id: 'workspace:openRecent',
-        category: FILE_CATEGORY,
         label: 'Open Recent Workspace...'
     };
     WorkspaceCommands.CLOSE = {
         id: 'workspace:close',
-        category: WORKSPACE_CATEGORY,
         label: 'Close Workspace'
     };
     WorkspaceCommands.NEW_FILE = {
         id: 'file.newFile',
-        category: FILE_CATEGORY,
         label: 'New File'
     };
     WorkspaceCommands.NEW_FOLDER = {
         id: 'file.newFolder',
-        category: FILE_CATEGORY,
         label: 'New Folder'
     };
     WorkspaceCommands.FILE_OPEN_WITH = function (opener) { return ({
         id: "file.openWith." + opener.id,
-        category: FILE_CATEGORY,
         label: opener.label,
         iconClass: opener.iconClass
     }); };
     WorkspaceCommands.FILE_RENAME = {
         id: 'file.rename',
-        category: FILE_CATEGORY,
         label: 'Rename'
     };
     WorkspaceCommands.FILE_DELETE = {
         id: 'file.delete',
-        category: FILE_CATEGORY,
         label: 'Delete'
     };
     WorkspaceCommands.FILE_DUPLICATE = {
         id: 'file.duplicate',
-        category: FILE_CATEGORY,
         label: 'Duplicate'
     };
     WorkspaceCommands.FILE_COMPARE = {
         id: 'file.compare',
-        category: FILE_CATEGORY,
         label: 'Compare with Each Other'
     };
     WorkspaceCommands.ADD_FOLDER = {
         id: 'workspace:addFolder',
-        category: WORKSPACE_CATEGORY,
         label: 'Add Folder to Workspace...'
     };
     WorkspaceCommands.REMOVE_FOLDER = {
         id: 'workspace:removeFolder',
-        category: WORKSPACE_CATEGORY,
         label: 'Remove Folder from Workspace'
     };
     WorkspaceCommands.SAVE_WORKSPACE_AS = {
         id: 'workspace:saveAs',
-        category: WORKSPACE_CATEGORY,
         label: 'Save Workspace As...'
     };
 })(WorkspaceCommands = exports.WorkspaceCommands || (exports.WorkspaceCommands = {}));
@@ -604,47 +584,30 @@ var WorkspaceCommandContribution = /** @class */ (function () {
             }); }
         }));
         registry.registerCommand(WorkspaceCommands.FILE_RENAME, this.newUriAwareCommandHandler({
-            isVisible: function (uri) { return !_this.isWorkspaceRoot(uri); },
-            execute: function (uri) { return _this.getParent(uri).then(function (parent) { return __awaiter(_this, void 0, void 0, function () {
-                var initialValue_1, stat, fileType, titleStr, dialog;
-                var _this = this;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            if (!parent) return [3 /*break*/, 2];
-                            initialValue_1 = uri.path.base;
-                            return [4 /*yield*/, this.fileSystem.getFileStat(uri.toString())];
-                        case 1:
-                            stat = _a.sent();
-                            if (stat === undefined) {
-                                throw new Error("Unexpected error occurred when renaming. File does not exist. URI: " + uri.toString(true) + ".");
+            execute: function (uri) { return _this.getParent(uri).then(function (parent) {
+                if (parent) {
+                    var initialValue_1 = uri.path.base;
+                    var dialog = new dialogs_1.SingleTextInputDialog({
+                        title: 'Rename File',
+                        initialValue: initialValue_1,
+                        initialSelectionRange: {
+                            start: 0,
+                            end: uri.path.name.length
+                        },
+                        validate: function (name, mode) {
+                            if (initialValue_1 === name && mode === 'preview') {
+                                return false;
                             }
-                            fileType = stat.isDirectory ? 'Directory' : 'File';
-                            titleStr = "Rename " + fileType;
-                            dialog = new dialogs_1.SingleTextInputDialog({
-                                title: titleStr,
-                                initialValue: initialValue_1,
-                                initialSelectionRange: {
-                                    start: 0,
-                                    end: uri.path.name.length
-                                },
-                                validate: function (name, mode) {
-                                    if (initialValue_1 === name && mode === 'preview') {
-                                        return false;
-                                    }
-                                    return _this.validateFileName(name, parent);
-                                }
-                            });
-                            dialog.open().then(function (name) {
-                                if (name) {
-                                    _this.fileSystem.move(uri.toString(), uri.parent.resolve(name).toString());
-                                }
-                            });
-                            _a.label = 2;
-                        case 2: return [2 /*return*/];
-                    }
-                });
-            }); }); }
+                            return _this.validateFileName(name, parent);
+                        }
+                    });
+                    dialog.open().then(function (name) {
+                        if (name) {
+                            _this.fileSystem.move(uri.toString(), uri.parent.resolve(name).toString());
+                        }
+                    });
+                }
+            }); }
         }));
         registry.registerCommand(WorkspaceCommands.FILE_DUPLICATE, this.newMultiUriAwareCommandHandler({
             execute: function (uris) { return __awaiter(_this, void 0, void 0, function () {
@@ -880,10 +843,6 @@ var WorkspaceCommandContribution = /** @class */ (function () {
         }
         var rootUris = new Set(this.workspaceService.tryGetRoots().map(function (root) { return root.uri; }));
         return uris.every(function (uri) { return rootUris.has(uri.toString()); });
-    };
-    WorkspaceCommandContribution.prototype.isWorkspaceRoot = function (uri) {
-        var rootUris = new Set(this.workspaceService.tryGetRoots().map(function (root) { return root.uri; }));
-        return rootUris.has(uri.toString());
     };
     WorkspaceCommandContribution.prototype.removeFolderFromWorkspace = function (uris) {
         return __awaiter(this, void 0, void 0, function () {
@@ -1356,9 +1315,16 @@ var WorkspaceFrontendContribution = /** @class */ (function () {
         var _this = this;
         // Not visible/enabled on Windows/Linux in electron.
         commands.registerCommand(workspace_commands_1.WorkspaceCommands.OPEN, {
-            isEnabled: function () { return core_1.isOSX || !_this.isElectron(); },
-            isVisible: function () { return core_1.isOSX || !_this.isElectron(); },
-            execute: function () { return _this.doOpen(); }
+            isEnabled: function () { return core_1.isOSX || !core_1.isElectron(); },
+            isVisible: function () { return core_1.isOSX || !core_1.isElectron(); },
+            // tslint:disable-next-line:no-any
+            execute: function (args) {
+                if (args) {
+                    var _a = __read(args, 1), fileURI = _a[0];
+                    return _this.workspaceService.open(fileURI);
+                }
+                return _this.doOpen();
+            }
         });
         // Visible/enabled only on Windows/Linux in electron.
         commands.registerCommand(workspace_commands_1.WorkspaceCommands.OPEN_FILE, {
@@ -1388,13 +1354,13 @@ var WorkspaceFrontendContribution = /** @class */ (function () {
         });
     };
     WorkspaceFrontendContribution.prototype.registerMenus = function (menus) {
-        if (core_1.isOSX || !this.isElectron()) {
+        if (core_1.isOSX || !core_1.isElectron()) {
             menus.registerMenuAction(browser_1.CommonMenus.FILE_OPEN, {
                 commandId: workspace_commands_1.WorkspaceCommands.OPEN.id,
                 order: 'a00'
             });
         }
-        if (!core_1.isOSX && this.isElectron()) {
+        if (!core_1.isOSX && core_1.isElectron()) {
             menus.registerMenuAction(browser_1.CommonMenus.FILE_OPEN, {
                 commandId: workspace_commands_1.WorkspaceCommands.OPEN_FILE.id,
                 label: workspace_commands_1.WorkspaceCommands.OPEN_FILE.dialogLabel + "...",
@@ -1424,10 +1390,10 @@ var WorkspaceFrontendContribution = /** @class */ (function () {
     };
     WorkspaceFrontendContribution.prototype.registerKeybindings = function (keybindings) {
         keybindings.registerKeybinding({
-            command: core_1.isOSX || !this.isElectron() ? workspace_commands_1.WorkspaceCommands.OPEN.id : workspace_commands_1.WorkspaceCommands.OPEN_FILE.id,
+            command: core_1.isOSX || !core_1.isElectron() ? workspace_commands_1.WorkspaceCommands.OPEN.id : workspace_commands_1.WorkspaceCommands.OPEN_FILE.id,
             keybinding: 'ctrlcmd+alt+o',
         });
-        if (!core_1.isOSX && this.isElectron()) {
+        if (!core_1.isOSX && core_1.isElectron()) {
             keybindings.registerKeybinding({
                 command: workspace_commands_1.WorkspaceCommands.OPEN_FOLDER.id,
                 keybinding: 'ctrl+k ctrl+o',
@@ -1452,7 +1418,7 @@ var WorkspaceFrontendContribution = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        if (!core_1.isOSX && this.isElectron()) {
+                        if (!core_1.isOSX && core_1.isElectron()) {
                             return [2 /*return*/, this.doOpenFile()];
                         }
                         return [4 /*yield*/, this.workspaceService.roots];
@@ -1624,7 +1590,7 @@ var WorkspaceFrontendContribution = /** @class */ (function () {
                         _a.sent();
                         supportMultiRootWorkspace = this.preferences['workspace.supportMultiRootWorkspace'];
                         type = core_1.OS.type();
-                        electron = this.isElectron();
+                        electron = core_1.isElectron();
                         return [2 /*return*/, WorkspaceFrontendContribution_1.createOpenWorkspaceOpenFileDialogProps({
                                 type: type,
                                 electron: electron,
@@ -1646,12 +1612,10 @@ var WorkspaceFrontendContribution = /** @class */ (function () {
                         });
                         return [4 /*yield*/, dialog.open()];
                     case 1:
-                        if (!_a.sent()) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.workspaceService.close()];
-                    case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3: return [2 /*return*/];
+                        if (_a.sent()) {
+                            this.workspaceService.close();
+                        }
+                        return [2 /*return*/];
                 }
             });
         });
@@ -1711,9 +1675,6 @@ var WorkspaceFrontendContribution = /** @class */ (function () {
                 }
             });
         });
-    };
-    WorkspaceFrontendContribution.prototype.isElectron = function () {
-        return core_1.environment.electron.is();
     };
     var WorkspaceFrontendContribution_1;
     __decorate([
@@ -2094,12 +2055,9 @@ exports.WorkspaceStorageService = WorkspaceStorageService;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

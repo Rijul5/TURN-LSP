@@ -173,7 +173,6 @@ var MonacoCommandService = /** @class */ (function () {
             }));
         }
     };
-    // tslint:disable-next-line:no-any
     MonacoCommandService.prototype.executeCommand = function (commandId) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -524,28 +523,22 @@ exports.MonacoContextMenuService = MonacoContextMenuService;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var monaco_editor_1 = __webpack_require__(/*! ./monaco-editor */ "../node_modules/@theia/monaco/lib/browser/monaco-editor.js");
@@ -706,16 +699,13 @@ exports.MonacoDiffNavigatorFactory = MonacoDiffNavigatorFactory;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1180,28 +1170,22 @@ exports.MonacoEditorProvider = MonacoEditorProvider;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1487,12 +1471,9 @@ exports.KEY_CODE_MAP = [];
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1581,7 +1562,7 @@ var MonacoQuickOpenService = /** @class */ (function (_super) {
     };
     MonacoQuickOpenService.prototype.internalOpen = function (opts) {
         this.opts = opts;
-        this.previousActiveElement = window.document.activeElement || undefined;
+        this.previousActiveElement = window.document.activeElement;
         this.widget.show(this.opts.prefix || '');
         this.setPlaceHolder(opts.inputAriaLabel);
         this.setPassword(opts.password ? true : false);
@@ -2155,7 +2136,6 @@ var MonacoWorkspace = /** @class */ (function () {
                         continue;
                     }
                     var uri = change.uri.toString();
-                    // tslint:disable-next-line:no-any
                     var codeUri = change.uri.codeUri;
                     if (monaco_languageclient_1.testGlob(globPattern, uri)) {
                         if (fileChangeType === browser_1.FileChangeType.ADDED) {
@@ -2188,14 +2168,14 @@ var MonacoWorkspace = /** @class */ (function () {
             dispose: function () { return disposables.dispose(); }
         };
     };
-    MonacoWorkspace.prototype.applyEdit = function (changes, options) {
+    MonacoWorkspace.prototype.applyEdit = function (changes) {
         return __awaiter(this, void 0, void 0, function () {
             var workspaceEdit;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         workspaceEdit = this.p2m.asWorkspaceEdit(changes);
-                        return [4 /*yield*/, this.applyBulkEdit(workspaceEdit, options)];
+                        return [4 /*yield*/, this.applyBulkEdit(workspaceEdit)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, true];
@@ -2203,7 +2183,7 @@ var MonacoWorkspace = /** @class */ (function () {
             });
         });
     };
-    MonacoWorkspace.prototype.applyBulkEdit = function (workspaceEdit, options) {
+    MonacoWorkspace.prototype.applyBulkEdit = function (workspaceEdit) {
         return __awaiter(this, void 0, monaco.Promise, function () {
             var e_3, _a, totalEdits, totalFiles, uri2Edits, _loop_1, this_1, _b, _c, uri, e_3_1, ariaSummary;
             return __generator(this, function (_d) {
@@ -2216,7 +2196,7 @@ var MonacoWorkspace = /** @class */ (function () {
                             var editorWidget, editor, model, currentSelections_1, edits, editOperations;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
-                                    case 0: return [4 /*yield*/, this_1.editorManager.open(new uri_1.default(uri), options)];
+                                    case 0: return [4 /*yield*/, this_1.editorManager.open(new uri_1.default(uri))];
                                     case 1:
                                         editorWidget = _a.sent();
                                         editor = monaco_editor_1.MonacoEditor.get(editorWidget);

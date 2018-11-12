@@ -137,16 +137,13 @@ exports.bindWorkspacePreferences = bindWorkspacePreferences;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -659,15 +656,15 @@ var WorkspaceService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.fileSystem.getCurrentUserHome()];
                     case 1:
                         home = _a.sent();
-                        if (!home) return [3 /*break*/, 3];
+                        if (!home) return [3 /*break*/, 5];
                         tempWorkspaceUri = getTemporaryWorkspaceFileUri(new uri_1.default(home.uri));
                         return [4 /*yield*/, this.fileSystem.exists(tempWorkspaceUri.toString())];
                     case 2:
-                        if (!(_a.sent())) {
-                            return [2 /*return*/, this.fileSystem.createFile(tempWorkspaceUri.toString())];
-                        }
-                        return [2 /*return*/, this.toFileStat(tempWorkspaceUri)];
-                    case 3: return [2 /*return*/];
+                        if (!!(_a.sent())) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.fileSystem.createFile(tempWorkspaceUri.toString())];
+                    case 3: return [2 /*return*/, _a.sent()];
+                    case 4: return [2 /*return*/, this.toFileStat(tempWorkspaceUri)];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
@@ -676,20 +673,10 @@ var WorkspaceService = /** @class */ (function () {
      * Clears current workspace root.
      */
     WorkspaceService.prototype.close = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this._workspace = undefined;
-                        this._roots.length = 0;
-                        return [4 /*yield*/, this.server.setMostRecentlyUsedWorkspace('')];
-                    case 1:
-                        _a.sent();
-                        this.reloadWindow();
-                        return [2 /*return*/];
-                }
-            });
-        });
+        this._workspace = undefined;
+        this._roots.length = 0;
+        this.server.setMostRecentlyUsedWorkspace('');
+        this.reloadWindow();
     };
     /**
      * returns a FileStat if the argument URI points to an existing directory. Otherwise, `undefined`.
@@ -756,7 +743,12 @@ var WorkspaceService = /** @class */ (function () {
             catch (error) {
                 // Fall back to reloading the current window in case the browser has blocked the new window
                 this._workspace = uri;
-                this.logger.error(error.toString()).then(function () { return _this.reloadWindow(); });
+                this.logger.error(error.toString()).then(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, this.reloadWindow()];
+                        case 1: return [2 /*return*/, _a.sent()];
+                    }
+                }); }); });
             }
         }
     };

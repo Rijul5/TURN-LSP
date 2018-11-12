@@ -96,7 +96,6 @@ var browser_2 = __webpack_require__(/*! @theia/languages/lib/browser */ "../node
 var editor_manager_1 = __webpack_require__(/*! ./editor-manager */ "../node_modules/@theia/editor/lib/browser/editor-manager.js");
 var EditorCommands;
 (function (EditorCommands) {
-    var EDITOR_CATEGORY = 'Editor';
     /**
      * Show editor references
      */
@@ -111,17 +110,14 @@ var EditorCommands;
     };
     EditorCommands.INDENT_USING_SPACES = {
         id: 'textEditor.commands.indentUsingSpaces',
-        category: EDITOR_CATEGORY,
         label: 'Indent Using Spaces'
     };
     EditorCommands.INDENT_USING_TABS = {
         id: 'textEditor.commands.indentUsingTabs',
-        category: EDITOR_CATEGORY,
         label: 'Indent Using Tabs'
     };
     EditorCommands.CHANGE_LANGUAGE = {
         id: 'textEditor.change.language',
-        category: EDITOR_CATEGORY,
         label: 'Change Language Mode'
     };
     /**
@@ -129,7 +125,6 @@ var EditorCommands;
      */
     EditorCommands.GO_BACK = {
         id: 'textEditor.commands.go.back',
-        category: EDITOR_CATEGORY,
         label: 'Go Back'
     };
     /**
@@ -137,7 +132,6 @@ var EditorCommands;
      */
     EditorCommands.GO_FORWARD = {
         id: 'textEditor.commands.go.forward',
-        category: EDITOR_CATEGORY,
         label: 'Go Forward'
     };
     /**
@@ -145,7 +139,6 @@ var EditorCommands;
      */
     EditorCommands.GO_LAST_EDIT = {
         id: 'textEditor.commands.go.lastEdit',
-        category: EDITOR_CATEGORY,
         label: 'Go to Last Edit Location'
     };
 })(EditorCommands = exports.EditorCommands || (exports.EditorCommands = {}));
@@ -492,12 +485,9 @@ exports.default = new inversify_1.ContainerModule(function (bind) {
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -659,12 +649,9 @@ exports.EditorKeybindingContribution = EditorKeybindingContribution;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -926,7 +913,7 @@ var EditorMainMenu;
     /**
      * The main `Go` menu item.
      */
-    EditorMainMenu.GO = __spread(core_1.MAIN_MENU_BAR, ['5_go']);
+    EditorMainMenu.GO = __spread(core_1.MAIN_MENU_BAR, ['4_go']);
     /**
      * Navigation menu group in the `Go` menu.
      */
@@ -1939,12 +1926,9 @@ exports.EditorWidgetFactory = EditorWidgetFactory;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2154,7 +2138,9 @@ var SemanticHighlightingService = /** @class */ (function () {
         if (scopes && scopes.length > 0) {
             this.logger.info("Registering scopes for language: " + languageId + ".");
             if (this.scopes.has(languageId)) {
-                this.logger.warn("The scopes are already registered for language: " + languageId + ".");
+                var error = new Error("The scopes are already registered for language: " + languageId + ".");
+                this.logger.error(error.message);
+                throw error;
             }
             this.scopes.set(languageId, scopes.map(function (scope) { return scope.slice(0); }));
             this.logger.info("The scopes have been successfully registered for " + languageId + ".");
@@ -2166,7 +2152,9 @@ var SemanticHighlightingService = /** @class */ (function () {
     SemanticHighlightingService.prototype.unregister = function (languageId) {
         this.logger.info("Unregistering scopes for language: " + languageId + ".");
         if (!this.scopes.has(languageId)) {
-            this.logger.warn("No scopes were registered for language: " + languageId + ".");
+            var error = new Error("No scopes were registered for language: " + languageId + ".");
+            this.logger.error(error.message);
+            throw error;
         }
         this.scopes.delete(languageId);
         this.logger.info("The scopes have been successfully unregistered for " + languageId + ".");
@@ -2385,12 +2373,9 @@ __export(__webpack_require__(/*! ./languages-frontend-module */ "../node_modules
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

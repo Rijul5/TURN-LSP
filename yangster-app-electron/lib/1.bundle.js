@@ -24,16 +24,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var browser_1 = __webpack_require__(/*! @theia/core/lib/browser */ "../node_modules/@theia/core/lib/browser/index.js");
@@ -99,12 +96,9 @@ exports.createSaveFileDialogContainer = createSaveFileDialogContainer;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -165,7 +159,6 @@ var FileDialogModel = /** @class */ (function (_super) {
     function FileDialogModel() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.onDidOpenFileEmitter = new common_1.Emitter();
-        _this._disableFileSelection = false;
         return _this;
     }
     FileDialogModel.prototype.init = function () {
@@ -179,13 +172,6 @@ var FileDialogModel = /** @class */ (function (_super) {
          */
         get: function () {
             return this._initialLocation;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(FileDialogModel.prototype, "disableFileSelection", {
-        set: function (isSelectable) {
-            this._disableFileSelection = isSelectable;
         },
         enumerable: true,
         configurable: true
@@ -223,25 +209,6 @@ var FileDialogModel = /** @class */ (function (_super) {
         else {
             _super.prototype.doOpenNode.call(this, node);
         }
-    };
-    FileDialogModel.prototype.getNextSelectableNode = function (node) {
-        if (node === void 0) { node = this.selectedNodes[0]; }
-        var nextNode = node;
-        do {
-            nextNode = _super.prototype.getNextSelectableNode.call(this, nextNode);
-        } while (file_tree_1.FileStatNode.is(nextNode) && !this.isFileStatNodeSelectable(nextNode));
-        return nextNode;
-    };
-    FileDialogModel.prototype.getPrevSelectableNode = function (node) {
-        if (node === void 0) { node = this.selectedNodes[0]; }
-        var prevNode = node;
-        do {
-            prevNode = _super.prototype.getPrevSelectableNode.call(this, prevNode);
-        } while (file_tree_1.FileStatNode.is(prevNode) && !this.isFileStatNodeSelectable(prevNode));
-        return prevNode;
-    };
-    FileDialogModel.prototype.isFileStatNodeSelectable = function (node) {
-        return !(!node.fileStat.isDirectory && this._disableFileSelection);
     };
     __decorate([
         inversify_1.inject(file_dialog_tree_1.FileDialogTree),
@@ -492,12 +459,9 @@ exports.DefaultFileDialogService = DefaultFileDialogService;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -601,12 +565,9 @@ exports.FileDialogTreeFiltersRenderer = FileDialogTreeFiltersRenderer;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -673,7 +634,13 @@ var FileDialogTree = /** @class */ (function (_super) {
      * @param fileExtensions array of extensions
      */
     FileDialogTree.prototype.setFilter = function (fileExtensions) {
-        this.fileExtensions = fileExtensions.slice();
+        var _this = this;
+        this.fileExtensions = [];
+        if (fileExtensions) {
+            fileExtensions.forEach(function (e) {
+                _this.fileExtensions.push(e);
+            });
+        }
         this.refresh();
     };
     FileDialogTree.prototype.toNodes = function (fileStat, parent) {
@@ -750,12 +717,9 @@ exports.FileDialogTree = FileDialogTree;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -780,53 +744,15 @@ var browser_1 = __webpack_require__(/*! @theia/core/lib/browser */ "../node_modu
 var file_tree_1 = __webpack_require__(/*! ../file-tree */ "../node_modules/@theia/filesystem/lib/browser/file-tree/index.js");
 var file_dialog_model_1 = __webpack_require__(/*! ./file-dialog-model */ "../node_modules/@theia/filesystem/lib/browser/file-dialog/file-dialog-model.js");
 exports.FILE_DIALOG_CLASS = 'theia-FileDialog';
-exports.NOT_SELECTABLE_CLASS = 'theia-mod-not-selectable';
 var FileDialogWidget = /** @class */ (function (_super) {
     __extends(FileDialogWidget, _super);
     function FileDialogWidget(props, model, contextMenuRenderer) {
         var _this = _super.call(this, props, model, contextMenuRenderer) || this;
         _this.props = props;
         _this.model = model;
-        _this._disableFileSelection = false;
         _this.addClass(exports.FILE_DIALOG_CLASS);
         return _this;
     }
-    Object.defineProperty(FileDialogWidget.prototype, "disableFileSelection", {
-        set: function (isSelectable) {
-            this._disableFileSelection = isSelectable;
-            this.model.disableFileSelection = isSelectable;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    FileDialogWidget.prototype.createNodeAttributes = function (node, props) {
-        var attr = _super.prototype.createNodeAttributes.call(this, node, props);
-        if (this.shouldDisableSelection(node)) {
-            var keys = Object.keys(attr);
-            keys.forEach(function (k) {
-                if (['className', 'style', 'title'].indexOf(k) < 0) {
-                    delete attr[k];
-                }
-            });
-        }
-        return attr;
-    };
-    FileDialogWidget.prototype.createNodeClassNames = function (node, props) {
-        var classNames = _super.prototype.createNodeClassNames.call(this, node, props);
-        if (this.shouldDisableSelection(node)) {
-            [browser_1.SELECTED_CLASS, browser_1.FOCUS_CLASS].forEach(function (name) {
-                var ind = classNames.indexOf(name);
-                if (ind >= 0) {
-                    classNames.splice(ind, 1);
-                }
-            });
-            classNames.push(exports.NOT_SELECTABLE_CLASS);
-        }
-        return classNames;
-    };
-    FileDialogWidget.prototype.shouldDisableSelection = function (node) {
-        return file_tree_1.FileStatNode.is(node) && !node.fileStat.isDirectory && this._disableFileSelection;
-    };
     FileDialogWidget = __decorate([
         inversify_1.injectable(),
         __param(0, inversify_1.inject(browser_1.TreeProps)),
@@ -866,12 +792,9 @@ exports.FileDialogWidget = FileDialogWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1056,17 +979,47 @@ var OpenFileDialog = /** @class */ (function (_super) {
         var _this = _super.call(this, props, widget) || this;
         _this.props = props;
         _this.widget = widget;
-        if (props.canSelectFiles !== undefined) {
-            _this.widget.disableFileSelection = !props.canSelectFiles;
-        }
         return _this;
     }
     OpenFileDialog.prototype.getAcceptButtonLabel = function () {
         return this.props.openLabel ? this.props.openLabel : 'Open';
     };
     OpenFileDialog.prototype.isValid = function (value) {
-        if (value && !this.props.canSelectMany && value instanceof Array) {
-            return 'You can select only one item';
+        if (value) {
+            if (this.props.canSelectMany) {
+                if (Array.isArray(value)) {
+                    var results = value;
+                    for (var i = 0; i < results.length; i++) {
+                        var error = this.validateNode(results[i]);
+                        if (error) {
+                            return error;
+                        }
+                    }
+                }
+                else {
+                    var error = this.validateNode(value);
+                    if (error) {
+                        return error;
+                    }
+                }
+            }
+            else {
+                if (value instanceof Array) {
+                    return 'You can select only one item';
+                }
+                return this.validateNode(value);
+            }
+        }
+        return '';
+    };
+    OpenFileDialog.prototype.validateNode = function (node) {
+        if (typeof this.props.canSelectFiles === 'boolean'
+            && !this.props.canSelectFiles && !node.fileStat.isDirectory) {
+            return 'Files cannot be selected';
+        }
+        if (typeof this.props.canSelectFolders === 'boolean'
+            && !this.props.canSelectFolders && node.fileStat.isDirectory) {
+            return 'Folders cannot be selected';
         }
         return '';
     };
@@ -1082,13 +1035,6 @@ var OpenFileDialog = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    OpenFileDialog.prototype.accept = function () {
-        if (this.props.canSelectFolders === false && !Array.isArray(this.value)) {
-            this.widget.model.openNode(this.value);
-            return;
-        }
-        _super.prototype.accept.call(this);
-    };
     OpenFileDialog = __decorate([
         inversify_1.injectable(),
         __param(0, inversify_1.inject(OpenFileDialogProps)),
@@ -1284,12 +1230,9 @@ exports.createFileTreeContainer = createFileTreeContainer;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1749,28 +1692,22 @@ exports.FileTreeModel = FileTreeModel;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1932,12 +1869,9 @@ exports.FileTreeWidget = FileTreeWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2265,12 +2199,9 @@ __export(__webpack_require__(/*! ./location-renderer */ "../node_modules/@theia/
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

@@ -20,13 +20,9 @@ function load(raw) {
     )
 }
 
-function start(port, host, argv) {
-    if (argv === undefined) {
-        argv = process.argv;
-    }
-
+function start(port, host) {
     const cliManager = container.get(CliManager);
-    return cliManager.initializeCli(argv).then(function () {
+    return cliManager.initializeCli().then(function () {
         const application = container.get(BackendApplication);
         application.use(express.static(path.join(__dirname, '../../lib'), {
             index: 'index.html'
@@ -35,7 +31,7 @@ function start(port, host, argv) {
     });
 }
 
-module.exports = (port, host, argv) => Promise.resolve()
+module.exports = (port, host) => Promise.resolve()
     .then(function () { return Promise.resolve(require('@theia/process/lib/node/process-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/filesystem/lib/node/filesystem-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/filesystem/lib/node/download/file-download-backend-module')).then(load) })
@@ -47,7 +43,7 @@ module.exports = (port, host, argv) => Promise.resolve()
     .then(function () { return Promise.resolve(require('@theia/terminal/lib/node/terminal-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/typescript/lib/node/typescript-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('theia-yang-extension/lib/backend/backend-extension')).then(load) })
-    .then(() => start(port, host, argv)).catch(reason => {
+    .then(() => start(port, host)).catch(reason => {
         console.error('Failed to start the backend application.');
         if (reason) {
             console.error(reason);
