@@ -2,7 +2,7 @@ module xyt6 {
     namespace 'ff';
     prefix 'sss';
 
-    choice XXXXXXDDDDDDDDDDDDXX {
+    choice XXXXXXDDDDDDDDXX {
         default: 'x';
         leaf 'bar' {
             type string;
@@ -10,7 +10,7 @@ module xyt6 {
         leaf 'bar1' {
             type string;
         }
-        leaf 'SSSSSSSSSSSSSSSDDS' {
+        leaf 'SSSSDDS' {
             type string;
         }
 

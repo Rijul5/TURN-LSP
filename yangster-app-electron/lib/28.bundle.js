@@ -24,13 +24,16 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -115,6 +118,7 @@ var MonacoCommandRegistry = /** @class */ (function () {
             }
         };
     };
+    // tslint:disable-next-line:no-any
     MonacoCommandRegistry.prototype.execute = function (monacoHandler) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -127,6 +131,7 @@ var MonacoCommandRegistry = /** @class */ (function () {
         }
         return Promise.resolve();
     };
+    // tslint:disable-next-line:no-any
     MonacoCommandRegistry.prototype.isEnabled = function (monacoHandler) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -135,6 +140,7 @@ var MonacoCommandRegistry = /** @class */ (function () {
         var editor = monaco_editor_1.MonacoEditor.getCurrent(this.editorManager);
         return !!editor && (!monacoHandler.isEnabled || monacoHandler.isEnabled.apply(monacoHandler, __spread([editor], args)));
     };
+    // tslint:disable-next-line:no-any
     MonacoCommandRegistry.prototype.isVisible = function (monacoHandler) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -664,7 +670,7 @@ exports.default = new inversify_1.ContainerModule(function (bind, unbind, isBoun
         return function (editor) { return context.container.get(monaco_editor_provider_1.MonacoEditorProvider).getDiffNavigator(editor); };
     });
     bind(monaco_outline_contribution_1.MonacoOutlineContribution).toSelf().inSingletonScope();
-    bind(browser_1.FrontendApplicationContribution).toDynamicValue(function (ctx) { return ctx.container.get(monaco_outline_contribution_1.MonacoOutlineContribution); });
+    bind(browser_1.FrontendApplicationContribution).toService(monaco_outline_contribution_1.MonacoOutlineContribution);
     bind(monaco_status_bar_contribution_1.MonacoStatusBarContribution).toSelf().inSingletonScope();
     bind(browser_1.FrontendApplicationContribution).toService(monaco_status_bar_contribution_1.MonacoStatusBarContribution);
     bind(monaco_command_registry_1.MonacoCommandRegistry).toSelf().inSingletonScope();
@@ -673,9 +679,7 @@ exports.default = new inversify_1.ContainerModule(function (bind, unbind, isBoun
     bind(browser_1.KeybindingContribution).to(monaco_keybinding_1.MonacoKeybindingContribution).inSingletonScope();
     rebind(editor_keybinding_contexts_1.StrictEditorTextFocusContext).to(monaco_keybinding_contexts_1.MonacoStrictEditorTextFocusContext).inSingletonScope();
     bind(monaco_quick_open_service_1.MonacoQuickOpenService).toSelf().inSingletonScope();
-    rebind(browser_1.QuickOpenService).toDynamicValue(function (ctx) {
-        return ctx.container.get(monaco_quick_open_service_1.MonacoQuickOpenService);
-    }).inSingletonScope();
+    rebind(browser_1.QuickOpenService).toService(monaco_quick_open_service_1.MonacoQuickOpenService);
     monaco_textmate_frontend_bindings_1.default(bind, unbind, isBound, rebind);
     bind(monaco_quick_input_service_1.QuickInputService).toSelf().inSingletonScope();
     bind(monaco_semantic_highlighting_service_1.MonacoSemanticHighlightingService).toSelf().inSingletonScope();
@@ -710,9 +714,12 @@ exports.default = new inversify_1.ContainerModule(function (bind, unbind, isBoun
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -785,13 +792,16 @@ exports.MonacoStrictEditorTextFocusContext = MonacoStrictEditorTextFocusContext;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -935,9 +945,12 @@ exports.MonacoKeybindingContribution = MonacoKeybindingContribution;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2066,9 +2079,12 @@ var MonacoOutlineSymbolInformationNode;
 "use strict";
 
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2115,7 +2131,7 @@ var QuickInputService = /** @class */ (function () {
             onType: function (s, a) { return _this.validateInput(s, a, inputItem); }
         }, options, {
             prefix: options.value,
-            placeholder: options.placeHolder,
+            placeholder: options.placeHolder ? options.placeHolder : '',
             onClose: function () { return inputItem.resolve(undefined); }
         });
         this.quickOpenService.internalOpen(this.opts);
@@ -2241,9 +2257,12 @@ var MonacoQuickInputControllerOptsImpl = /** @class */ (function (_super) {
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2600,6 +2619,7 @@ var path = __webpack_require__(/*! path */ "path");
 var inversify_1 = __webpack_require__(/*! inversify */ "../node_modules/inversify/lib/inversify.js");
 exports.ContainerModule = inversify_1.ContainerModule;
 var monaco_loader_1 = __webpack_require__(/*! ../browser/monaco-loader */ "../node_modules/@theia/monaco/lib/browser/monaco-loader.js");
+// tslint:disable-next-line:no-any
 var s = self;
 /**
  * We cannot use `FileUri#create` because URIs with file scheme cannot be properly decoded via the AMD loader.
@@ -2692,7 +2712,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../css-loader/lib
 
 
 // module
-exports.push([module.i, "/* FIXME when https://github.com/Microsoft/monaco-editor/issues/113#issuecomment-240406949 is fixed */\n.monaco-editor .inputarea {\n    position: fixed !important;\n    top: 0 !important;\n    left: 0 !important;\n}\n\n.monaco-editor {\n    padding-bottom: 5.6px;\n    font-family: var(--theia-ui-font-family);\n    font-size: inherit !important;\n}\n\n.monaco-editor, .monaco-editor-background {\n    background: var(--theia-layout-color0);\n}\n\n.monaco-editor .margin {\n    background: var(--theia-layout-color0);\n}\n\n.monaco-keybinding-key {\n    color: var(--theia-ui-font-color1) !important;\n}\n\n/* \n * set z-index to 0, so tabs are not above overlay widgets \n */\n.p-TabBar.theia-app-centers {\n    z-index: 0;\n}\n\n/*\n * we need to disable the background image when using font awesome icons\n */\n.monaco-quick-open-widget .quick-open-tree .quick-open-entry .quick-open-entry-icon.fa {\n    background-image: none;    \n    margin-right: 0px;\n}\n\n/*\n * we need to disable the background image when using file-icons\n */\n.monaco-quick-open-widget .quick-open-tree .quick-open-entry .quick-open-entry-icon.file-icon {\n    background-image: none;    \n    margin-right: 0px;\n}\n\n.monaco-tree-row  {\n    padding-right: 11px;\n}\n\n.quick-open-entry .quick-open-row .monaco-icon-label .monaco-icon-label-description-container .monaco-highlighted-label .highlight {\n    color: var(--theia-accent-color1);\n}", ""]);
+exports.push([module.i, "/* FIXME when https://github.com/Microsoft/monaco-editor/issues/113#issuecomment-240406949 is fixed */\n.monaco-editor .inputarea {\n    position: fixed !important;\n    top: 0 !important;\n    left: 0 !important;\n}\n\n.monaco-editor {\n    padding-bottom: 5.6px;\n    font-family: var(--theia-ui-font-family);\n    font-size: inherit !important;\n}\n\n.monaco-editor, .monaco-editor-background {\n    background: var(--theia-layout-color0);\n}\n\n.monaco-editor .margin {\n    background: var(--theia-layout-color0);\n}\n\n.monaco-keybinding-key {\n    color: var(--theia-ui-font-color1) !important;\n}\n\n/* \n * set z-index to 0, so tabs are not above overlay widgets \n */\n.p-TabBar.theia-app-centers {\n    z-index: 0;\n    display: flex;\n}\n\n/*\n * we need to disable the background image when using font awesome icons\n */\n.monaco-quick-open-widget .quick-open-tree .quick-open-entry .quick-open-entry-icon.fa {\n    background-image: none;    \n    margin-right: 0px;\n}\n\n/*\n * we need to disable the background image when using file-icons\n */\n.monaco-quick-open-widget .quick-open-tree .quick-open-entry .quick-open-entry-icon.file-icon {\n    background-image: none;    \n    margin-right: 0px;\n}\n\n.monaco-tree-row  {\n    padding-right: 11px;\n}\n\n.quick-open-entry .quick-open-row .monaco-icon-label .monaco-icon-label-description-container .monaco-highlighted-label .highlight {\n    color: var(--theia-accent-color1);\n}\n", ""]);
 
 // exports
 

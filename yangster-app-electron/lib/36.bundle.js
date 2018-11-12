@@ -79,8 +79,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var inversify_1 = __webpack_require__(/*! inversify */ "../node_modules/inversify/lib/inversify.js");
+var uri_1 = __webpack_require__(/*! @theia/core/lib/common/uri */ "../node_modules/@theia/core/lib/common/uri.js");
 var quick_file_open_1 = __webpack_require__(/*! ./quick-file-open */ "../node_modules/@theia/file-search/lib/browser/quick-file-open.js");
 var QuickFileOpenFrontendContribution = /** @class */ (function () {
     function QuickFileOpenFrontendContribution() {
@@ -88,7 +105,13 @@ var QuickFileOpenFrontendContribution = /** @class */ (function () {
     QuickFileOpenFrontendContribution.prototype.registerCommands = function (commands) {
         var _this = this;
         commands.registerCommand(quick_file_open_1.quickFileOpen, {
-            execute: function () { return _this.quickFileOpenService.open(); },
+            execute: function (args) {
+                if (args) {
+                    var _a = __read(args, 1), fileURI = _a[0];
+                    return _this.quickFileOpenService.openFile(new uri_1.default(fileURI));
+                }
+                return _this.quickFileOpenService.open();
+            },
             isEnabled: function () { return _this.quickFileOpenService.isEnabled(); }
         });
     };
@@ -139,13 +162,16 @@ exports.QuickFileOpenFrontendContribution = QuickFileOpenFrontendContribution;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -234,6 +260,7 @@ var navigation_location_service_1 = __webpack_require__(/*! @theia/editor/lib/br
 var fuzzy = __webpack_require__(/*! fuzzy */ "../node_modules/fuzzy/lib/fuzzy.js");
 exports.quickFileOpen = {
     id: 'file-search.openFile',
+    category: 'File',
     label: 'Open File...'
 };
 var QuickFileOpenService = /** @class */ (function () {
@@ -427,9 +454,12 @@ var QuickFileOpenService = /** @class */ (function () {
             if (mode !== browser_1.QuickOpenMode.OPEN) {
                 return false;
             }
-            _this.openerService.getOpener(uri).then(function (opener) { return opener.open(uri); });
+            _this.openFile(uri);
             return true;
         };
+    };
+    QuickFileOpenService.prototype.openFile = function (uri) {
+        this.openerService.getOpener(uri).then(function (opener) { return opener.open(uri); });
     };
     QuickFileOpenService.prototype.toItem = function (uriOrString, group) {
         return __awaiter(this, void 0, void 0, function () {

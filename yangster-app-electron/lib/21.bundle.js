@@ -25,9 +25,12 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -331,12 +334,12 @@ function createHierarchyTreeContainer(parent) {
     var child = browser_1.createTreeContainer(parent);
     child.unbind(browser_1.TreeImpl);
     child.bind(callhierarchy_tree_1.CallHierarchyTree).toSelf();
-    child.rebind(browser_1.Tree).toDynamicValue(function (ctx) { return ctx.container.get(callhierarchy_tree_1.CallHierarchyTree); });
+    child.rebind(browser_1.Tree).toService(callhierarchy_tree_1.CallHierarchyTree);
     child.unbind(browser_1.TreeModelImpl);
     child.bind(callhierarchy_tree_model_1.CallHierarchyTreeModel).toSelf();
-    child.rebind(browser_1.TreeModel).toDynamicValue(function (ctx) { return ctx.container.get(callhierarchy_tree_model_1.CallHierarchyTreeModel); });
+    child.rebind(browser_1.TreeModel).toService(callhierarchy_tree_model_1.CallHierarchyTreeModel);
     child.bind(callhierarchy_tree_widget_1.CallHierarchyTreeWidget).toSelf();
-    child.rebind(browser_1.TreeWidget).toDynamicValue(function (ctx) { return ctx.container.get(callhierarchy_tree_widget_1.CallHierarchyTreeWidget); });
+    child.rebind(browser_1.TreeWidget).toService(callhierarchy_tree_widget_1.CallHierarchyTreeWidget);
     return child;
 }
 function createHierarchyTreeWidget(parent) {
@@ -372,9 +375,12 @@ exports.createHierarchyTreeWidget = createHierarchyTreeWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -509,22 +515,28 @@ exports.CallHierarchyTreeModel = CallHierarchyTreeModel;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -686,6 +698,7 @@ var CallHierarchyTreeWidget = /** @class */ (function (_super) {
         if (oldState.root && oldState.languageId) {
             // tslint:disable-next-line:no-any
             this.model.root = this.inflateFromStorage(oldState.root);
+            // tslint:disable-next-line:no-any
             this.model.initializeCallHierarchy(oldState.languageId, this.model.root.definition.location);
         }
     };
@@ -731,9 +744,12 @@ exports.CallHierarchyTreeWidget = CallHierarchyTreeWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

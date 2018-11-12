@@ -1,6 +1,6 @@
 /*!-----------------------------------------------------------------------------
  * Copyright (c) Microsoft Corporation. All rights reserved.
- * monaco-css version: 2.2.0(ce1fb4aab797eaa8f5071c77302f7bb72bcb22ea)
+ * monaco-css version: 2.3.0(a450f6054cbfb890c2ede882f6d2e47cc0e47f2f)
  * Released under the MIT license
  * https://github.com/Microsoft/monaco-css/blob/master/LICENSE.md
  *-----------------------------------------------------------------------------*/

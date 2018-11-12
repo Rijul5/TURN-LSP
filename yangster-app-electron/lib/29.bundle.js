@@ -25,9 +25,12 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -87,6 +90,7 @@ var AbstractResourcePreferenceProvider = /** @class */ (function (_super) {
     __extends(AbstractResourcePreferenceProvider, _super);
     function AbstractResourcePreferenceProvider() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        // tslint:disable-next-line:no-any
         _this.preferences = {};
         return _this;
     }
@@ -124,9 +128,11 @@ var AbstractResourcePreferenceProvider = /** @class */ (function (_super) {
             });
         });
     };
+    // tslint:disable-next-line:no-any
     AbstractResourcePreferenceProvider.prototype.getPreferences = function () {
         return this.preferences;
     };
+    // tslint:disable-next-line:no-any
     AbstractResourcePreferenceProvider.prototype.setPreference = function (key, value) {
         return __awaiter(this, void 0, void 0, function () {
             var resource, content, formattingOptions, edits, result;
@@ -213,41 +219,6 @@ exports.AbstractResourcePreferenceProvider = AbstractResourcePreferenceProvider;
 
 /***/ }),
 
-/***/ "../node_modules/@theia/preferences/lib/browser/monaco-contribution.js":
-/*!*****************************************************************************!*\
-  !*** ../node_modules/@theia/preferences/lib/browser/monaco-contribution.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/********************************************************************************
- * Copyright (C) 2018 TypeFox and others.
- *
- * This program and the accompanying materials are made available under the
- * terms of the Eclipse Public License v. 2.0 which is available at
- * http://www.eclipse.org/legal/epl-2.0.
- *
- * This Source Code may also be made available under the following Secondary
- * Licenses when the conditions for such availability set forth in the Eclipse
- * Public License v. 2.0 are satisfied: GNU General Public License, version 2
- * with the GNU Classpath Exception which is available at
- * https://www.gnu.org/software/classpath/license.html.
- *
- * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- ********************************************************************************/
-monaco.languages.register({
-    id: 'jsonc',
-    'aliases': [
-        'JSON with Comments'
-    ],
-    'filenames': [
-        'settings.json'
-    ]
-});
-
-
-/***/ }),
-
 /***/ "../node_modules/@theia/preferences/lib/browser/preference-frontend-module.js":
 /*!************************************************************************************!*\
   !*** ../node_modules/@theia/preferences/lib/browser/preference-frontend-module.js ***!
@@ -283,7 +254,7 @@ var preference_tree_container_1 = __webpack_require__(/*! ./preference-tree-cont
 var preferences_menu_factory_1 = __webpack_require__(/*! ./preferences-menu-factory */ "../node_modules/@theia/preferences/lib/browser/preferences-menu-factory.js");
 var preferences_tree_widget_1 = __webpack_require__(/*! ./preferences-tree-widget */ "../node_modules/@theia/preferences/lib/browser/preferences-tree-widget.js");
 var preferences_frontend_application_contribution_1 = __webpack_require__(/*! ./preferences-frontend-application-contribution */ "../node_modules/@theia/preferences/lib/browser/preferences-frontend-application-contribution.js");
-__webpack_require__(/*! ./monaco-contribution */ "../node_modules/@theia/preferences/lib/browser/monaco-contribution.js");
+__webpack_require__(/*! ./preferences-monaco-contribution */ "../node_modules/@theia/preferences/lib/browser/preferences-monaco-contribution.js");
 function bindPreferences(bind, unbind) {
     unbind(preferences_1.PreferenceProvider);
     bind(preferences_1.PreferenceProvider).to(user_preference_provider_1.UserPreferenceProvider).inSingletonScope().whenTargetNamed(preferences_1.PreferenceScope.User);
@@ -347,13 +318,16 @@ exports.default = new inversify_1.ContainerModule(function (bind, unbind, isBoun
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var preferences_decorator_1 = __webpack_require__(/*! ./preferences-decorator */ "../node_modules/@theia/preferences/lib/browser/preferences-decorator.js");
@@ -364,7 +338,7 @@ function createPreferencesTreeWidget(parent) {
     var child = browser_1.createTreeContainer(parent);
     child.bind(preferences_tree_widget_1.PreferencesTreeWidget).toSelf();
     child.rebind(browser_1.TreeProps).toConstantValue(__assign({}, browser_1.defaultTreeProps, { search: true }));
-    child.rebind(browser_1.TreeWidget).toDynamicValue(function (ctx) { return ctx.container.get(preferences_tree_widget_1.PreferencesTreeWidget); });
+    child.rebind(browser_1.TreeWidget).toService(preferences_tree_widget_1.PreferencesTreeWidget);
     bindPreferencesDecorator(child);
     return child.get(preferences_tree_widget_1.PreferencesTreeWidget);
 }
@@ -372,7 +346,7 @@ exports.createPreferencesTreeWidget = createPreferencesTreeWidget;
 function bindPreferencesDecorator(parent) {
     parent.bind(preferences_decorator_1.PreferencesDecorator).toSelf().inSingletonScope();
     parent.bind(preferences_decorator_service_1.PreferencesDecoratorService).toSelf().inSingletonScope();
-    parent.rebind(browser_1.TreeDecoratorService).toDynamicValue(function (ctx) { return ctx.container.get(preferences_decorator_service_1.PreferencesDecoratorService); }).inSingletonScope();
+    parent.rebind(browser_1.TreeDecoratorService).toService(preferences_decorator_service_1.PreferencesDecoratorService);
 }
 
 
@@ -403,9 +377,12 @@ function bindPreferencesDecorator(parent) {
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -583,9 +560,12 @@ exports.PreferencesContribution = PreferencesContribution;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -877,6 +857,7 @@ var commands_1 = __webpack_require__(/*! @phosphor/commands */ "../node_modules/
 var PreferencesMenuFactory = /** @class */ (function () {
     function PreferencesMenuFactory() {
     }
+    // tslint:disable-next-line:no-any
     PreferencesMenuFactory.prototype.createPreferenceContextMenu = function (id, savedPreference, property, execute) {
         var commands = new commands_1.CommandRegistry();
         var menu = new widgets_1.Menu({ commands: commands });
@@ -944,6 +925,41 @@ exports.PreferencesMenuFactory = PreferencesMenuFactory;
 
 /***/ }),
 
+/***/ "../node_modules/@theia/preferences/lib/browser/preferences-monaco-contribution.js":
+/*!*****************************************************************************************!*\
+  !*** ../node_modules/@theia/preferences/lib/browser/preferences-monaco-contribution.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/********************************************************************************
+ * Copyright (C) 2018 TypeFox and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ ********************************************************************************/
+monaco.languages.register({
+    id: 'jsonc',
+    'aliases': [
+        'JSON with Comments'
+    ],
+    'filenames': [
+        'settings.json'
+    ]
+});
+
+
+/***/ }),
+
 /***/ "../node_modules/@theia/preferences/lib/browser/preferences-tree-widget.js":
 /*!*********************************************************************************!*\
   !*** ../node_modules/@theia/preferences/lib/browser/preferences-tree-widget.js ***!
@@ -969,9 +985,12 @@ exports.PreferencesMenuFactory = PreferencesMenuFactory;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1539,9 +1558,12 @@ exports.PreferencesTreeWidget = PreferencesTreeWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1603,9 +1625,12 @@ exports.UserPreferenceProvider = UserPreferenceProvider;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

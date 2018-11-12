@@ -82,6 +82,7 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// tslint:disable:no-any
 var inversify_1 = __webpack_require__(/*! inversify */ "../node_modules/inversify/lib/inversify.js");
 var core_1 = __webpack_require__(/*! @theia/core */ "../node_modules/@theia/core/lib/common/index.js");
 var common_1 = __webpack_require__(/*! @theia/core/lib/common */ "../node_modules/@theia/core/lib/common/index.js");
@@ -95,6 +96,7 @@ var BaseLanguageClientContribution = /** @class */ (function () {
         this.workspace = workspace;
         this.languages = languages;
         this.languageClientFactory = languageClientFactory;
+        this.toDeactivate = new common_1.DisposableCollection();
         this.toRestart = new common_1.DisposableCollection();
         this.waitForReady();
     }
@@ -105,8 +107,10 @@ var BaseLanguageClientContribution = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    // tslint:disable-next-line:no-any
     BaseLanguageClientContribution.prototype.waitForActivation = function (app) {
         var _this = this;
+        // tslint:disable-next-line:no-any
         var activationPromises = [];
         var workspaceContains = this.workspaceContains;
         if (workspaceContains.length !== 0) {
@@ -143,12 +147,18 @@ var BaseLanguageClientContribution = /** @class */ (function () {
         return this.workspace.ready;
     };
     BaseLanguageClientContribution.prototype.activate = function () {
+        if (this.toDeactivate.disposed) {
+            this.doActivate(this.toDeactivate);
+        }
+        return this.toDeactivate;
+    };
+    BaseLanguageClientContribution.prototype.deactivate = function () {
+        this.toDeactivate.dispose();
+    };
+    BaseLanguageClientContribution.prototype.doActivate = function (toDeactivate) {
         var _this = this;
         var options = {};
-        var toDeactivate = new common_1.DisposableCollection();
-        toDeactivate.push(common_1.Disposable.create(function () {
-            options.reconnecting = false;
-        }));
+        toDeactivate.push(common_1.Disposable.create(function () { return options.reconnecting = false; }));
         this.connectionProvider.listen({
             path: language_client_services_1.LanguageContribution.getPath(this),
             onConnection: function (messageConnection) {
@@ -156,28 +166,29 @@ var BaseLanguageClientContribution = /** @class */ (function () {
                     messageConnection.dispose();
                     return;
                 }
-                toDeactivate.push(messageConnection);
                 var languageClient = _this.createLanguageClient(messageConnection);
                 _this.onWillStart(languageClient);
-                languageClient.start();
-                _this.toRestart.push(common_1.Disposable.create(function () { return __awaiter(_this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, languageClient.onReady()];
-                            case 1:
-                                _a.sent();
-                                languageClient.stop();
-                                return [2 /*return*/];
-                        }
-                    });
-                }); }));
+                toDeactivate.pushAll([
+                    messageConnection,
+                    _this.toRestart.push(common_1.Disposable.create(function () { return __awaiter(_this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, languageClient.onReady()];
+                                case 1:
+                                    _a.sent();
+                                    languageClient.stop();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); })),
+                    languageClient.start()
+                ]);
             }
         }, options);
-        return toDeactivate;
     };
     Object.defineProperty(BaseLanguageClientContribution.prototype, "running", {
         get: function () {
-            return this.state === language_client_services_1.State.Running;
+            return !this.toDeactivate.disposed && this.state === language_client_services_1.State.Running;
         },
         enumerable: true,
         configurable: true
@@ -214,14 +225,21 @@ var BaseLanguageClientContribution = /** @class */ (function () {
         return {
             documentSelector: documentSelector,
             synchronize: { fileEvents: fileEvents, configurationSection: configurationSection },
-            initializationFailedHandler: function (err) {
-                var detail = err instanceof Error ? ": " + err.message : '.';
-                _this.messageService.error("Failed to start " + _this.name + " language server" + detail);
-                return false;
-            },
+            initializationFailedHandler: function (err) { return _this.handleInitializationFailed(err); },
             diagnosticCollectionName: id,
             initializationOptions: initializationOptions
         };
+    };
+    BaseLanguageClientContribution.prototype.handleInitializationFailed = function (err) {
+        var _this = this;
+        this.deactivate();
+        var detail = err instanceof Error ? ": " + err.message : '.';
+        this.messageService.error("Failed to start " + this.name + " language server" + detail, 'Retry').then(function (result) {
+            if (result) {
+                _this.activate();
+            }
+        });
+        return false;
     };
     Object.defineProperty(BaseLanguageClientContribution.prototype, "initializationOptions", {
         // tslint:disable-next-line:no-any
@@ -289,6 +307,7 @@ var BaseLanguageClientContribution = /** @class */ (function () {
     /**
      * Check to see if one of the paths is in the current workspace.
      */
+    // tslint:disable-next-line:no-any
     BaseLanguageClientContribution.prototype.waitForItemInWorkspace = function () {
         return __awaiter(this, void 0, void 0, function () {
             var doesContain;
@@ -728,9 +747,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __values = (this && this.__values) || function (o) {
     var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
     if (m) return m.call(o);
@@ -744,10 +760,10 @@ var __values = (this && this.__values) || function (o) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var inversify_1 = __webpack_require__(/*! inversify */ "../node_modules/inversify/lib/inversify.js");
 var common_1 = __webpack_require__(/*! @theia/core/lib/common */ "../node_modules/@theia/core/lib/common/index.js");
+var browser_1 = __webpack_require__(/*! @theia/core/lib/browser */ "../node_modules/@theia/core/lib/browser/index.js");
 var language_client_contribution_1 = __webpack_require__(/*! ./language-client-contribution */ "../node_modules/@theia/languages/lib/browser/language-client-contribution.js");
 var LanguagesFrontendContribution = /** @class */ (function () {
-    function LanguagesFrontendContribution(contributions) {
-        this.contributions = contributions;
+    function LanguagesFrontendContribution() {
     }
     LanguagesFrontendContribution.prototype.onStart = function (app) {
         var e_1, _a;
@@ -770,10 +786,59 @@ var LanguagesFrontendContribution = /** @class */ (function () {
             finally { if (e_1) throw e_1.error; }
         }
     };
+    LanguagesFrontendContribution.prototype.registerCommands = function (commands) {
+        var _this = this;
+        var e_2, _a;
+        var _loop_2 = function (contribution) {
+            commands.registerCommand({
+                id: contribution.id + ".server.start",
+                label: contribution.name + ": Start Language Server"
+            }, {
+                execute: function () { return contribution.activate(_this.app); },
+                isEnabled: function () { return !contribution.running; },
+                isVisible: function () { return !contribution.running; },
+            });
+            commands.registerCommand({
+                id: contribution.id + ".server.stop",
+                label: contribution.name + ": Stop Language Server"
+            }, {
+                execute: function () { return contribution.deactivate(); },
+                isEnabled: function () { return contribution.running; },
+                isVisible: function () { return contribution.running; },
+            });
+            commands.registerCommand({
+                id: contribution.id + ".server.restart",
+                label: contribution.name + ": Restart Language Server"
+            }, {
+                execute: function () { return contribution.restart(); },
+                isEnabled: function () { return contribution.running; },
+                isVisible: function () { return contribution.running; },
+            });
+        };
+        try {
+            for (var _b = __values(this.contributions.getContributions()), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var contribution = _c.value;
+                _loop_2(contribution);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+    };
+    __decorate([
+        inversify_1.inject(browser_1.FrontendApplication),
+        __metadata("design:type", browser_1.FrontendApplication)
+    ], LanguagesFrontendContribution.prototype, "app", void 0);
+    __decorate([
+        inversify_1.inject(common_1.ContributionProvider), inversify_1.named(language_client_contribution_1.LanguageClientContribution),
+        __metadata("design:type", Object)
+    ], LanguagesFrontendContribution.prototype, "contributions", void 0);
     LanguagesFrontendContribution = __decorate([
-        inversify_1.injectable(),
-        __param(0, inversify_1.inject(common_1.ContributionProvider)), __param(0, inversify_1.named(language_client_contribution_1.LanguageClientContribution)),
-        __metadata("design:paramtypes", [Object])
+        inversify_1.injectable()
     ], LanguagesFrontendContribution);
     return LanguagesFrontendContribution;
 }());
@@ -833,7 +898,9 @@ exports.default = new inversify_1.ContainerModule(function (bind) {
     bind(language_client_services_1.Window).to(window_impl_1.WindowImpl).inSingletonScope();
     bind(language_client_factory_1.LanguageClientFactory).toSelf().inSingletonScope();
     common_1.bindContributionProvider(bind, language_client_contribution_1.LanguageClientContribution);
-    bind(browser_1.FrontendApplicationContribution).to(languages_frontend_contribution_1.LanguagesFrontendContribution);
+    bind(languages_frontend_contribution_1.LanguagesFrontendContribution).toSelf().inSingletonScope();
+    bind(browser_1.FrontendApplicationContribution).toService(languages_frontend_contribution_1.LanguagesFrontendContribution);
+    bind(common_1.CommandContribution).toService(languages_frontend_contribution_1.LanguagesFrontendContribution);
     bind(workspace_symbols_1.WorkspaceSymbolCommand).toSelf().inSingletonScope();
     try {
         for (var _b = __values([common_1.CommandContribution, browser_1.KeybindingContribution, browser_1.QuickOpenContribution]), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -849,7 +916,7 @@ exports.default = new inversify_1.ContainerModule(function (bind) {
         finally { if (e_1) throw e_1.error; }
     }
     bind(language_client_provider_impl_1.LanguageClientProviderImpl).toSelf().inSingletonScope();
-    bind(language_client_provider_1.LanguageClientProvider).toDynamicValue(function (ctx) { return ctx.container.get(language_client_provider_impl_1.LanguageClientProviderImpl); }).inSingletonScope();
+    bind(language_client_provider_1.LanguageClientProvider).toService(language_client_provider_impl_1.LanguageClientProviderImpl);
 });
 
 
@@ -1056,9 +1123,12 @@ exports.WindowImpl = WindowImpl;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }

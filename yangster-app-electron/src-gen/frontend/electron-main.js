@@ -56,6 +56,7 @@ if (isMaster) {
     });
     app.on('ready', () => {
         // Check whether we are in bundled application or development mode.
+        // @ts-ignore
         const devMode = process.defaultApp || /node_modules[/]electron[/]/.test(process.execPath);
         const mainWindow = createNewWindow();
         const loadMainWindow = (port) => {
@@ -72,7 +73,13 @@ if (isMaster) {
                 app.exit(1);
             });
         } else {
-            const cp = fork(mainPath);
+            const { versions } = process;
+            // @ts-ignore
+            if (versions && typeof versions.electron !== 'undefined') {
+                // @ts-ignore
+                process.env.THEIA_ELECTRON_VERSION = versions.electron;
+            }
+            const cp = fork(mainPath, [], { env: Object.assign({}, process.env) });
             cp.on('message', (message) => {
                 loadMainWindow(message);
             });

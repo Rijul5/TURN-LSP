@@ -24,13 +24,16 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -407,7 +410,7 @@ exports.default = new inversify_1.ContainerModule(function (bind) {
         return browser_1.WebSocketConnectionProvider.createProxy(ctx.container, common_2.fileSystemPath);
     }).inSingletonScope();
     bind(file_resource_1.FileResourceResolver).toSelf().inSingletonScope();
-    bind(common_1.ResourceResolver).toDynamicValue(function (ctx) { return ctx.container.get(file_resource_1.FileResourceResolver); });
+    bind(common_1.ResourceResolver).toService(file_resource_1.FileResourceResolver);
     bind(browser_1.FrontendApplicationContribution).to(filesystem_frontend_contribution_1.FileSystemFrontendContribution).inSingletonScope();
 });
 

@@ -660,7 +660,7 @@ exports.default = new inversify_1.ContainerModule(function (bind) {
     try {
         for (var _b = __values([browser_1.FrontendApplicationContribution, browser_1.KeybindingContribution, common_1.CommandContribution, common_1.MenuContribution]), _c = _b.next(); !_c.done; _c = _b.next()) {
             var serviceIdentifier = _c.value;
-            bind(serviceIdentifier).toDynamicValue(function (ctx) { return ctx.container.get(electron_menu_contribution_1.ElectronMenuContribution); }).inSingletonScope();
+            bind(serviceIdentifier).toService(electron_menu_contribution_1.ElectronMenuContribution);
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }

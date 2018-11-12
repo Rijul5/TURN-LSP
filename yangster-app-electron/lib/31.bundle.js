@@ -127,9 +127,12 @@ exports.InMemoryTextResourceResolver = InMemoryTextResourceResolver;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -207,17 +210,21 @@ var inversify_1 = __webpack_require__(/*! inversify */ "../node_modules/inversif
 var core_1 = __webpack_require__(/*! @theia/core */ "../node_modules/@theia/core/lib/common/index.js");
 var navigator_contribution_1 = __webpack_require__(/*! @theia/navigator/lib/browser/navigator-contribution */ "../node_modules/@theia/navigator/lib/browser/navigator-contribution.js");
 var uri_command_handler_1 = __webpack_require__(/*! @theia/core/lib/common/uri-command-handler */ "../node_modules/@theia/core/lib/common/uri-command-handler.js");
+var browser_2 = __webpack_require__(/*! @theia/workspace/lib/browser */ "../node_modules/@theia/workspace/lib/browser/index.js");
 var SearchInWorkspaceCommands;
 (function (SearchInWorkspaceCommands) {
+    var SEARCH_CATEGORY = 'Search';
     SearchInWorkspaceCommands.TOGGLE_SIW_WIDGET = {
         id: 'search-in-workspace.toggle'
     };
     SearchInWorkspaceCommands.OPEN_SIW_WIDGET = {
         id: 'search-in-workspace.open',
-        label: 'Search in Workspace'
+        category: SEARCH_CATEGORY,
+        label: 'Find in Files'
     };
     SearchInWorkspaceCommands.FIND_IN_FOLDER = {
         id: 'search-in-workspace.in-folder',
+        category: SEARCH_CATEGORY,
         label: 'Find in Folder...'
     };
 })(SearchInWorkspaceCommands = exports.SearchInWorkspaceCommands || (exports.SearchInWorkspaceCommands = {}));
@@ -228,7 +235,8 @@ var SearchInWorkspaceFrontendContribution = /** @class */ (function (_super) {
             widgetId: search_in_workspace_widget_1.SearchInWorkspaceWidget.ID,
             widgetName: search_in_workspace_widget_1.SearchInWorkspaceWidget.LABEL,
             defaultWidgetOptions: {
-                area: 'left'
+                area: 'left',
+                rank: 300
             },
             toggleCommandId: SearchInWorkspaceCommands.TOGGLE_SIW_WIDGET.id
         }) || this;
@@ -249,6 +257,7 @@ var SearchInWorkspaceFrontendContribution = /** @class */ (function (_super) {
         var _this = this;
         _super.prototype.registerCommands.call(this, commands);
         commands.registerCommand(SearchInWorkspaceCommands.OPEN_SIW_WIDGET, {
+            isEnabled: function () { return _this.workspaceService.tryGetRoots().length > 0; },
             execute: function () { return _this.openView({
                 activate: true
             }); }
@@ -298,6 +307,10 @@ var SearchInWorkspaceFrontendContribution = /** @class */ (function (_super) {
         inversify_1.inject(browser_1.LabelProvider),
         __metadata("design:type", browser_1.LabelProvider)
     ], SearchInWorkspaceFrontendContribution.prototype, "labelProvider", void 0);
+    __decorate([
+        inversify_1.inject(browser_2.WorkspaceService),
+        __metadata("design:type", browser_2.WorkspaceService)
+    ], SearchInWorkspaceFrontendContribution.prototype, "workspaceService", void 0);
     SearchInWorkspaceFrontendContribution = __decorate([
         inversify_1.injectable(),
         __metadata("design:paramtypes", [])
@@ -400,22 +413,28 @@ exports.createSearchTreeWidget = createSearchTreeWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -498,6 +517,7 @@ var browser_5 = __webpack_require__(/*! @theia/filesystem/lib/browser */ "../nod
 var React = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 var SearchInWorkspaceResultNode;
 (function (SearchInWorkspaceResultNode) {
+    // tslint:disable-next-line:no-any
     function is(node) {
         return browser_1.ExpandableTreeNode.is(node) && browser_1.SelectableTreeNode.is(node) && 'path' in node;
     }
@@ -505,6 +525,7 @@ var SearchInWorkspaceResultNode;
 })(SearchInWorkspaceResultNode = exports.SearchInWorkspaceResultNode || (exports.SearchInWorkspaceResultNode = {}));
 var SearchInWorkspaceResultLineNode;
 (function (SearchInWorkspaceResultLineNode) {
+    // tslint:disable-next-line:no-any
     function is(node) {
         return browser_1.SelectableTreeNode.is(node) && 'line' in node && 'character' in node && 'lineText' in node;
     }
@@ -524,6 +545,7 @@ var SearchInWorkspaceResultTreeWidget = /** @class */ (function (_super) {
         _this.appliedDecorations = new Map();
         _this.cancelIndicator = new core_1.CancellationTokenSource();
         _this.changeEmitter = new core_1.Emitter();
+        // tslint:disable-next-line:no-any
         _this.focusInputEmitter = new core_1.Emitter();
         _this.replace = function (node, e) { return _this.doReplace(node, e); };
         _this.remove = function (node, e) { return _this.doRemove(node, e); };
@@ -662,11 +684,13 @@ var SearchInWorkspaceResultTreeWidget = /** @class */ (function (_super) {
                                     }
                                     _this.refreshModelChildren();
                                 }
-                            }, searchOptions)];
+                            }, searchOptions).catch(function (e) { return; })];
                     case 1:
                         searchId = _a.sent();
                         token.onCancellationRequested(function () {
-                            _this.searchService.cancel(searchId);
+                            if (searchId) {
+                                _this.searchService.cancel(searchId);
+                            }
                         });
                         return [2 /*return*/];
                 }
@@ -1268,9 +1292,12 @@ exports.SearchInWorkspaceService = SearchInWorkspaceService;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1293,6 +1320,7 @@ var search_in_workspace_result_tree_widget_1 = __webpack_require__(/*! ./search-
 var React = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "../node_modules/react-dom/index.js");
 var common_1 = __webpack_require__(/*! @theia/core/lib/common */ "../node_modules/@theia/core/lib/common/index.js");
+var browser_2 = __webpack_require__(/*! @theia/workspace/lib/browser */ "../node_modules/@theia/workspace/lib/browser/index.js");
 var SearchInWorkspaceWidget = /** @class */ (function (_super) {
     __extends(SearchInWorkspaceWidget, _super);
     function SearchInWorkspaceWidget() {
@@ -1473,7 +1501,8 @@ var SearchInWorkspaceWidget = /** @class */ (function (_super) {
             searchDetails);
     };
     SearchInWorkspaceWidget.prototype.renderControlButtons = function () {
-        var refreshButton = this.renderControlButton("refresh" + (this.hasResults || this.searchTerm !== '' ? ' enabled' : ''), 'Refresh', this.refresh);
+        var refreshButton = this.renderControlButton("refresh" + ((this.hasResults || this.searchTerm !== '') && this.workspaceService.tryGetRoots().length > 0
+            ? ' enabled' : ''), 'Refresh', this.refresh);
         var collapseAllButton = this.renderControlButton("collapse-all" + (this.hasResults ? ' enabled' : ''), 'Collapse All', this.collapseAll);
         var clearButton = this.renderControlButton("clear-all" + (this.hasResults ? ' enabled' : ''), 'Clear', this.clear);
         return React.createElement("div", { className: 'controls button-container' },
@@ -1508,6 +1537,10 @@ var SearchInWorkspaceWidget = /** @class */ (function (_super) {
             } }, toggle);
     };
     SearchInWorkspaceWidget.prototype.renderNotification = function () {
+        if (this.workspaceService.tryGetRoots().length <= 0) {
+            return React.createElement("div", { className: 'search-notification show' },
+                React.createElement("div", null, "Cannot search without an active workspace present."));
+        }
         return React.createElement("div", { className: "search-notification " + (this.searchInWorkspaceOptions.maxResults && this.resultNumber >= this.searchInWorkspaceOptions.maxResults ? 'show' : '') },
             React.createElement("div", null, "This is only a subset of all results. Use a more specific search term to narrow down the result list."));
     };
@@ -1641,6 +1674,10 @@ var SearchInWorkspaceWidget = /** @class */ (function (_super) {
         inversify_1.inject(search_in_workspace_result_tree_widget_1.SearchInWorkspaceResultTreeWidget),
         __metadata("design:type", search_in_workspace_result_tree_widget_1.SearchInWorkspaceResultTreeWidget)
     ], SearchInWorkspaceWidget.prototype, "resultTreeWidget", void 0);
+    __decorate([
+        inversify_1.inject(browser_2.WorkspaceService),
+        __metadata("design:type", browser_2.WorkspaceService)
+    ], SearchInWorkspaceWidget.prototype, "workspaceService", void 0);
     __decorate([
         inversify_1.postConstruct(),
         __metadata("design:type", Function),

@@ -47,6 +47,7 @@ var FileUri;
             return fsPath(new uri_1.default(uri));
         }
         else {
+            // tslint:disable-next-line:no-any
             return uri.codeUri.fsPath;
         }
     }
@@ -81,9 +82,12 @@ var FileUri;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -146,7 +150,8 @@ var BlameCommands;
 (function (BlameCommands) {
     BlameCommands.TOGGLE_GIT_ANNOTATIONS = {
         id: 'git.editor.toggle.annotations',
-        label: 'Git: Toggle Blame Annotations'
+        category: 'Git',
+        label: 'Toggle Blame Annotations'
     };
     BlameCommands.CLEAR_GIT_ANNOTATIONS = {
         id: 'git.editor.clear.annotations'
@@ -258,7 +263,6 @@ var BlameContribution = /** @class */ (function () {
     BlameContribution.prototype.registerMenus = function (menus) {
         menus.registerMenuAction(git_view_contribution_1.EDITOR_CONTEXT_MENU_GIT, {
             commandId: BlameCommands.TOGGLE_GIT_ANNOTATIONS.id,
-            label: BlameCommands.TOGGLE_GIT_ANNOTATIONS.label.slice('Git: '.length)
         });
     };
     BlameContribution.prototype.registerKeybindings = function (keybindings) {
@@ -876,9 +880,12 @@ exports.bindBlame = bindBlame;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -970,7 +977,8 @@ var GitDiffCommands;
 (function (GitDiffCommands) {
     GitDiffCommands.OPEN_FILE_DIFF = {
         id: 'git-diff:open-file-diff',
-        label: 'Diff: Compare With...'
+        category: 'Git Diff',
+        label: 'Compare With...'
     };
 })(GitDiffCommands = exports.GitDiffCommands || (exports.GitDiffCommands = {}));
 var GitDiffContribution = /** @class */ (function (_super) {
@@ -1160,22 +1168,28 @@ exports.bindGitDiffModule = bindGitDiffModule;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1264,6 +1278,7 @@ var GitDiffWidget = /** @class */ (function (_super) {
     __extends(GitDiffWidget, _super);
     function GitDiffWidget() {
         var _this = _super.call(this) || this;
+        _this.fileChangeNodes = [];
         _this.showPreviousChange = function () { return _this.doShowPreviousChange(); };
         _this.showNextChange = function () { return _this.doShowNextChange(); };
         _this.addGitDiffListKeyListeners = function (id) { return _this.doAddGitDiffListKeyListeners(id); };
@@ -1871,9 +1886,12 @@ var ContentLines;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2065,9 +2083,12 @@ exports.DirtyDiffContribution = DirtyDiffContribution;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -2182,13 +2203,16 @@ exports.DirtyDiffDecorator = DirtyDiffDecorator;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2270,16 +2294,10 @@ var DirtyDiffManager = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         this.editorManager.onCreated(function (e) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, this.handleEditorCreated(e)];
-                                case 1: return [2 /*return*/, _a.sent()];
-                            }
+                            return [2 /*return*/, this.handleEditorCreated(e)];
                         }); }); });
                         this.repositoryTracker.onGitEvent(throttle(function (event) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, this.handleGitStatusUpdate(event.source, event.status)];
-                                case 1: return [2 /*return*/, _a.sent()];
-                            }
+                            return [2 /*return*/, this.handleGitStatusUpdate(event.source, event.status)];
                         }); }); }, 500));
                         gitStatus = this.repositoryTracker.selectedRepositoryStatus;
                         repository = this.repositoryTracker.selectedRepository;
@@ -2473,7 +2491,7 @@ var DirtyDiffModel = /** @class */ (function () {
                     this.enabled = enabled;
                     this.update();
                 }
-                if (preferenceName === 'git.editor.dirtydiff.linesLimit') {
+                if (preferenceName === 'git.editor.dirtyDiff.linesLimit') {
                     this.update();
                 }
                 return [2 /*return*/];
@@ -2482,7 +2500,7 @@ var DirtyDiffModel = /** @class */ (function () {
     };
     Object.defineProperty(DirtyDiffModel.prototype, "linesLimit", {
         get: function () {
-            var limit = this.preferences['git.editor.dirtydiff.linesLimit'];
+            var limit = this.preferences['git.editor.dirtyDiff.linesLimit'];
             return limit > 0 ? limit : Number.MAX_SAFE_INTEGER;
         },
         enumerable: true,
@@ -2585,20 +2603,11 @@ var DirtyDiffModel = /** @class */ (function () {
     };
     DirtyDiffModel.prototype.isInGitRepository = function (repository) {
         return __awaiter(this, void 0, void 0, function () {
-            var modelUri, repoUri, _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        modelUri = this.editor.uri.withoutScheme().toString();
-                        repoUri = new uri_1.default(repository.localUri).withoutScheme().toString();
-                        _a = modelUri.startsWith(repoUri);
-                        if (!_a) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.previousRevision.isVersionControlled()];
-                    case 1:
-                        _a = (_b.sent());
-                        _b.label = 2;
-                    case 2: return [2 /*return*/, _a];
-                }
+            var modelUri, repoUri;
+            return __generator(this, function (_a) {
+                modelUri = this.editor.uri.withoutScheme().toString();
+                repoUri = new uri_1.default(repository.localUri).withoutScheme().toString();
+                return [2 /*return*/, modelUri.startsWith(repoUri) && this.previousRevision.isVersionControlled()];
             });
         });
     };
@@ -2817,13 +2826,16 @@ exports.GitCommitMessageValidator = GitCommitMessageValidator;
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3267,9 +3279,12 @@ exports.default = new inversify_1.ContainerModule(function (bind) {
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -3548,7 +3563,7 @@ exports.GitConfigSchema = {
             'description': 'Show git decorations in the editor.',
             'default': true
         },
-        'git.editor.dirtydiff.linesLimit': {
+        'git.editor.dirtyDiff.linesLimit': {
             'type': 'number',
             'description': 'Do not show dirty diff decorations, if editor\'s line count exceeds this limit.',
             'default': 1000
@@ -3597,9 +3612,12 @@ exports.bindGitPreferences = bindGitPreferences;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -4384,13 +4402,16 @@ var SingleStringInputOpenItem = /** @class */ (function (_super) {
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5486,22 +5507,28 @@ exports.GitUriLabelProviderContribution = GitUriLabelProviderContribution;
 "use strict";
 
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5834,6 +5861,7 @@ var GitViewContribution = /** @class */ (function (_super) {
             isVisible: function () { return _this.syncService.canPublish(); }
         });
         registry.registerCommand(GIT_COMMANDS.CLONE, {
+            // tslint:disable-next-line:no-any
             execute: function (args) {
                 var _a;
                 var url = undefined;
@@ -6009,22 +6037,28 @@ exports.GitViewContribution = GitViewContribution;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7084,9 +7118,12 @@ exports.GitAvatarService = GitAvatarService;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7240,9 +7277,12 @@ exports.GitCommitDetailOpenHandler = GitCommitDetailOpenHandler;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7335,7 +7375,7 @@ var GitCommitDetailWidget = /** @class */ (function (_super) {
         var mailRow = React.createElement("div", { className: 'header-row noWrapInfo' },
             React.createElement("div", { className: 'theia-header' }, "e-mail: "),
             mail);
-        var authorDate = this.commitDetailOptions.authorDate;
+        var authorDate = new Date(this.commitDetailOptions.authorDate);
         var dateStr = authorDate.toLocaleDateString('en', {
             month: 'short',
             day: 'numeric',
@@ -7435,9 +7475,12 @@ exports.GitCommitDetailWidget = GitCommitDetailWidget;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7517,30 +7560,32 @@ var uri_command_handler_1 = __webpack_require__(/*! @theia/core/lib/common/uri-c
 var git_repository_tracker_1 = __webpack_require__(/*! ../git-repository-tracker */ "../node_modules/@theia/git/lib/browser/git-repository-tracker.js");
 var git_repository_provider_1 = __webpack_require__(/*! ../git-repository-provider */ "../node_modules/@theia/git/lib/browser/git-repository-provider.js");
 var git_view_contribution_1 = __webpack_require__(/*! ../git-view-contribution */ "../node_modules/@theia/git/lib/browser/git-view-contribution.js");
+exports.GIT_HISTORY_ID = 'git-history';
+exports.GIT_HISTORY_LABEL = 'Git History';
+exports.GIT_HISTORY_TOGGLE_KEYBINDING = 'alt+h';
+exports.GIT_HISTORY_MAX_COUNT = 100;
 var GitHistoryCommands;
 (function (GitHistoryCommands) {
     GitHistoryCommands.OPEN_FILE_HISTORY = {
         id: 'git-history:open-file-history',
-        label: 'Git History'
     };
     GitHistoryCommands.OPEN_BRANCH_HISTORY = {
-        id: 'git-history:open-branch-history'
+        id: 'git-history:open-branch-history',
+        label: exports.GIT_HISTORY_LABEL
     };
 })(GitHistoryCommands = exports.GitHistoryCommands || (exports.GitHistoryCommands = {}));
-exports.GIT_HISTORY = 'git-history';
-exports.GIT_HISTORY_MAX_COUNT = 100;
 var GitHistoryContribution = /** @class */ (function (_super) {
     __extends(GitHistoryContribution, _super);
     function GitHistoryContribution() {
         return _super.call(this, {
-            widgetId: exports.GIT_HISTORY,
-            widgetName: 'Git History',
+            widgetId: exports.GIT_HISTORY_ID,
+            widgetName: exports.GIT_HISTORY_LABEL,
             defaultWidgetOptions: {
                 area: 'left',
                 rank: 400
             },
             toggleCommandId: GitHistoryCommands.OPEN_BRANCH_HISTORY.id,
-            toggleKeybinding: 'alt+h'
+            toggleKeybinding: exports.GIT_HISTORY_TOGGLE_KEYBINDING
         }) || this;
     }
     GitHistoryContribution.prototype.init = function () {
@@ -7564,12 +7609,28 @@ var GitHistoryContribution = /** @class */ (function (_super) {
             }
         });
     };
+    GitHistoryContribution.prototype.openView = function (args) {
+        return __awaiter(this, void 0, void 0, function () {
+            var widget;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, _super.prototype.openView.call(this, args)];
+                    case 1:
+                        widget = _a.sent();
+                        this.refreshWidget(args.uri);
+                        return [2 /*return*/, widget];
+                }
+            });
+        });
+    };
     GitHistoryContribution.prototype.registerMenus = function (menus) {
         menus.registerMenuAction(__spread(navigator_contribution_1.NAVIGATOR_CONTEXT_MENU, ['5_history']), {
-            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id
+            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id,
+            label: exports.GIT_HISTORY_LABEL
         });
         menus.registerMenuAction(git_view_contribution_1.EDITOR_CONTEXT_MENU_GIT, {
-            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id
+            commandId: GitHistoryCommands.OPEN_FILE_HISTORY.id,
+            label: exports.GIT_HISTORY_LABEL
         });
         _super.prototype.registerMenus.call(this, menus);
     };
@@ -7577,27 +7638,12 @@ var GitHistoryContribution = /** @class */ (function (_super) {
         var _this = this;
         commands.registerCommand(GitHistoryCommands.OPEN_FILE_HISTORY, this.newUriAwareCommandHandler({
             execute: function (uri) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                return [2 /*return*/, this.showWidget(uri.toString())];
+                return [2 /*return*/, this.openView({ activate: true, uri: uri.toString() })];
             }); }); },
             isEnabled: function (uri) { return !!_this.repositoryProvider.findRepository(uri); }
         }));
         commands.registerCommand(GitHistoryCommands.OPEN_BRANCH_HISTORY, {
-            execute: function () { return _this.showWidget(undefined); }
-        });
-    };
-    GitHistoryContribution.prototype.showWidget = function (uri) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.openView({
-                            activate: true
-                        })];
-                    case 1:
-                        _a.sent();
-                        this.refreshWidget(uri);
-                        return [2 /*return*/];
-                }
-            });
+            execute: function () { return _this.openView({ activate: true, uri: undefined }); }
         });
     };
     GitHistoryContribution.prototype.refreshWidget = function (uri) {
@@ -7694,7 +7740,7 @@ function bindGitHistoryModule(bind) {
     bind(git_avatar_service_1.GitAvatarService).toSelf().inSingletonScope();
     bind(git_history_widget_1.GitHistoryWidget).toSelf();
     bind(browser_1.WidgetFactory).toDynamicValue(function (ctx) { return ({
-        id: git_history_contribution_1.GIT_HISTORY,
+        id: git_history_contribution_1.GIT_HISTORY_ID,
         createWidget: function () { return ctx.container.get(git_history_widget_1.GitHistoryWidget); }
     }); });
     bind(browser_1.WidgetFactory).toDynamicValue(function (ctx) { return ({
@@ -7708,7 +7754,7 @@ function bindGitHistoryModule(bind) {
         }
     }); });
     bind(git_commit_detail_open_handler_1.GitCommitDetailOpenHandler).toSelf();
-    bind(browser_1.OpenHandler).toDynamicValue(function (ctx) { return ctx.container.get(git_commit_detail_open_handler_1.GitCommitDetailOpenHandler); });
+    bind(browser_1.OpenHandler).toService(git_commit_detail_open_handler_1.GitCommitDetailOpenHandler);
     browser_1.bindViewContribution(bind, git_history_contribution_1.GitHistoryContribution);
 }
 exports.bindGitHistoryModule = bindGitHistoryModule;
@@ -7741,22 +7787,28 @@ exports.bindGitHistoryModule = bindGitHistoryModule;
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7854,6 +7906,7 @@ var git_widget_1 = __webpack_require__(/*! ../git-widget */ "../node_modules/@th
 var React = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 var GitCommitNode;
 (function (GitCommitNode) {
+    // tslint:disable-next-line:no-any
     function is(node) {
         return !!node && 'commitSha' in node && 'commitMessage' in node && 'fileChangeNodes' in node;
     }
@@ -7875,10 +7928,10 @@ var GitHistoryWidget = /** @class */ (function (_super) {
         _this.loadMoreRows = function (params) { return _this.doLoadMoreRows(params); };
         _this.renderCommit = function (commit) { return _this.doRenderCommit(commit); };
         _this.renderFileChangeList = function (fileChange) { return _this.doRenderFileChangeList(fileChange); };
-        _this.id = git_history_contribution_1.GIT_HISTORY;
+        _this.id = git_history_contribution_1.GIT_HISTORY_ID;
         _this.scrollContainer = 'git-history-list-container';
-        _this.title.label = 'Git History';
-        _this.title.caption = 'Git History';
+        _this.title.label = git_history_contribution_1.GIT_HISTORY_LABEL;
+        _this.title.caption = git_history_contribution_1.GIT_HISTORY_LABEL;
         _this.title.iconClass = 'fa git-history-tab-icon';
         _this.addClass('theia-git');
         _this.resetState();
@@ -7889,6 +7942,7 @@ var GitHistoryWidget = /** @class */ (function (_super) {
         var _this = this;
         _super.prototype.onAfterAttach.call(this, msg);
         this.addGitListNavigationKeyListeners(this.node);
+        // tslint:disable-next-line:no-any
         this.addEventListener(this.node, 'ps-scroll-y', function (e) {
             if (_this.listView && _this.listView.list && _this.listView.list.Grid) {
                 var scrollTop = e.target.scrollTop;
@@ -7937,104 +7991,98 @@ var GitHistoryWidget = /** @class */ (function (_super) {
     };
     GitHistoryWidget.prototype.addCommits = function (options) {
         return __awaiter(this, void 0, void 0, function () {
-            var repository, resolver, token, log;
-            var _this = this;
-            return __generator(this, function (_a) {
-                repository = this.repositoryProvider.findRepositoryOrSelected(options);
-                this.errorMessage = undefined;
-                this.cancelIndicator.cancel();
-                this.cancelIndicator = new cancellation_1.CancellationTokenSource();
-                token = this.cancelIndicator.token;
-                if (repository) {
-                    log = this.git.log(repository, options);
-                    log.catch(function (reason) {
-                        _this.errorMessage = reason.message;
-                        resolver();
-                    });
-                    log.then(function (changes) { return __awaiter(_this, void 0, void 0, function () {
-                        var e_1, _a, _b, commits, changes_1, changes_1_1, commit, fileChangeNodes, avatarUrl, e_1_1, pathIsUnderVersionControl;
-                        return __generator(this, function (_c) {
-                            switch (_c.label) {
-                                case 0:
-                                    if (token.isCancellationRequested || !this.hasMoreCommits) {
-                                        return [2 /*return*/];
-                                    }
-                                    if (options && ((options.maxCount && changes.length < options.maxCount) || (!options.maxCount && this.commits))) {
-                                        this.hasMoreCommits = false;
-                                    }
-                                    if (this.commits.length > 0) {
-                                        changes = changes.slice(1);
-                                    }
-                                    if (!(changes.length > 0)) return [3 /*break*/, 9];
-                                    commits = [];
-                                    _c.label = 1;
-                                case 1:
-                                    _c.trys.push([1, 6, 7, 8]);
-                                    changes_1 = __values(changes), changes_1_1 = changes_1.next();
-                                    _c.label = 2;
-                                case 2:
-                                    if (!!changes_1_1.done) return [3 /*break*/, 5];
-                                    commit = changes_1_1.value;
-                                    fileChangeNodes = [];
-                                    return [4 /*yield*/, this.avatarService.getAvatar(commit.author.email)];
-                                case 3:
-                                    avatarUrl = _c.sent();
-                                    commits.push({
-                                        authorName: commit.author.name,
-                                        authorDate: new Date(commit.author.timestamp),
-                                        authorEmail: commit.author.email,
-                                        authorDateRelative: commit.authorDateRelative,
-                                        authorAvatar: avatarUrl,
-                                        commitSha: commit.sha,
-                                        commitMessage: commit.summary,
-                                        messageBody: commit.body,
-                                        fileChangeNodes: fileChangeNodes,
-                                        fileChanges: commit.fileChanges,
-                                        expanded: false,
-                                        selected: false
-                                    });
-                                    _c.label = 4;
-                                case 4:
-                                    changes_1_1 = changes_1.next();
-                                    return [3 /*break*/, 2];
-                                case 5: return [3 /*break*/, 8];
-                                case 6:
-                                    e_1_1 = _c.sent();
-                                    e_1 = { error: e_1_1 };
-                                    return [3 /*break*/, 8];
-                                case 7:
-                                    try {
-                                        if (changes_1_1 && !changes_1_1.done && (_a = changes_1.return)) _a.call(changes_1);
-                                    }
-                                    finally { if (e_1) throw e_1.error; }
-                                    return [7 /*endfinally*/];
-                                case 8:
-                                    (_b = this.commits).push.apply(_b, __spread(commits));
-                                    return [3 /*break*/, 11];
-                                case 9:
-                                    if (!(options && options.uri && repository)) return [3 /*break*/, 11];
-                                    return [4 /*yield*/, this.git.lsFiles(repository, options.uri, { errorUnmatch: true })];
-                                case 10:
-                                    pathIsUnderVersionControl = _c.sent();
-                                    if (!pathIsUnderVersionControl) {
-                                        this.errorMessage = React.createElement(React.Fragment, null, "It is not under version control.");
-                                    }
-                                    _c.label = 11;
-                                case 11:
-                                    resolver();
-                                    return [2 /*return*/];
-                            }
+            var e_1, _a, _b, repository, token, changes, commits, changes_1, changes_1_1, commit, fileChangeNodes, avatarUrl, e_1_1, pathIsUnderVersionControl, error_1;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        repository = this.repositoryProvider.findRepositoryOrSelected(options);
+                        this.errorMessage = undefined;
+                        this.cancelIndicator.cancel();
+                        this.cancelIndicator = new cancellation_1.CancellationTokenSource();
+                        token = this.cancelIndicator.token;
+                        if (!repository) return [3 /*break*/, 16];
+                        _c.label = 1;
+                    case 1:
+                        _c.trys.push([1, 14, , 15]);
+                        return [4 /*yield*/, this.git.log(repository, options)];
+                    case 2:
+                        changes = _c.sent();
+                        if (token.isCancellationRequested || !this.hasMoreCommits) {
+                            return [2 /*return*/];
+                        }
+                        if (options && ((options.maxCount && changes.length < options.maxCount) || (!options.maxCount && this.commits))) {
+                            this.hasMoreCommits = false;
+                        }
+                        if (this.commits.length > 0) {
+                            changes = changes.slice(1);
+                        }
+                        if (!(changes.length > 0)) return [3 /*break*/, 11];
+                        commits = [];
+                        _c.label = 3;
+                    case 3:
+                        _c.trys.push([3, 8, 9, 10]);
+                        changes_1 = __values(changes), changes_1_1 = changes_1.next();
+                        _c.label = 4;
+                    case 4:
+                        if (!!changes_1_1.done) return [3 /*break*/, 7];
+                        commit = changes_1_1.value;
+                        fileChangeNodes = [];
+                        return [4 /*yield*/, this.avatarService.getAvatar(commit.author.email)];
+                    case 5:
+                        avatarUrl = _c.sent();
+                        commits.push({
+                            authorName: commit.author.name,
+                            authorDate: new Date(commit.author.timestamp),
+                            authorEmail: commit.author.email,
+                            authorDateRelative: commit.authorDateRelative,
+                            authorAvatar: avatarUrl,
+                            commitSha: commit.sha,
+                            commitMessage: commit.summary,
+                            messageBody: commit.body,
+                            fileChangeNodes: fileChangeNodes,
+                            fileChanges: commit.fileChanges,
+                            expanded: false,
+                            selected: false
                         });
-                    }); });
+                        _c.label = 6;
+                    case 6:
+                        changes_1_1 = changes_1.next();
+                        return [3 /*break*/, 4];
+                    case 7: return [3 /*break*/, 10];
+                    case 8:
+                        e_1_1 = _c.sent();
+                        e_1 = { error: e_1_1 };
+                        return [3 /*break*/, 10];
+                    case 9:
+                        try {
+                            if (changes_1_1 && !changes_1_1.done && (_a = changes_1.return)) _a.call(changes_1);
+                        }
+                        finally { if (e_1) throw e_1.error; }
+                        return [7 /*endfinally*/];
+                    case 10:
+                        (_b = this.commits).push.apply(_b, __spread(commits));
+                        return [3 /*break*/, 13];
+                    case 11:
+                        if (!(options && options.uri && repository)) return [3 /*break*/, 13];
+                        return [4 /*yield*/, this.git.lsFiles(repository, options.uri, { errorUnmatch: true })];
+                    case 12:
+                        pathIsUnderVersionControl = _c.sent();
+                        if (!pathIsUnderVersionControl) {
+                            this.errorMessage = React.createElement(React.Fragment, null, "It is not under version control.");
+                        }
+                        _c.label = 13;
+                    case 13: return [3 /*break*/, 15];
+                    case 14:
+                        error_1 = _c.sent();
+                        this.errorMessage = error_1.message;
+                        return [3 /*break*/, 15];
+                    case 15: return [3 /*break*/, 17];
+                    case 16:
+                        this.commits = [];
+                        this.errorMessage = React.createElement(React.Fragment, null, "There is no repository selected in this workspace.");
+                        _c.label = 17;
+                    case 17: return [2 /*return*/];
                 }
-                else {
-                    setTimeout(function () {
-                        _this.commits = [];
-                        _this.errorMessage = React.createElement(React.Fragment, null, "There is no repository selected in this workspace.");
-                        resolver();
-                    });
-                }
-                return [2 /*return*/, new Promise(function (resolve) { return resolver = resolve; })];
             });
         });
     };
@@ -8166,8 +8214,9 @@ var GitHistoryWidget = /** @class */ (function (_super) {
         return list;
     };
     GitHistoryWidget.prototype.doHandleScroll = function (info) {
-        this.node.scrollTo({ top: info.scrollTop });
+        this.node.scrollTop = info.scrollTop;
     };
+    // tslint:disable-next-line:no-any
     GitHistoryWidget.prototype.doLoadMoreRows = function (params) {
         var _this = this;
         var resolver;
@@ -8678,6 +8727,7 @@ var GitStatusChangeEvent;
      * `true` if the argument is a `GitStatusEvent`, otherwise `false`.
      * @param event the argument to check whether it is a Git status change event or not.
      */
+    // tslint:disable-next-line:no-any
     function is(event) {
         return !!event && ('source' in event) && ('status' in event);
     }
@@ -9161,9 +9211,12 @@ __export(__webpack_require__(/*! ./navigator-decorator-service */ "../node_modul
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
