@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.IssueCodesTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:43" hostname="rijul-ThinkPad-T470" time="0.018">
+  <properties/>
+  <testcase name="checkCodes" classname="io.typefox.yang.tests.IssueCodesTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

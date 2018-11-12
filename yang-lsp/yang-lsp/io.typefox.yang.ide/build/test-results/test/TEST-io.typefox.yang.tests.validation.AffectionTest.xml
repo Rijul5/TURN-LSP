@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.validation.AffectionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:08:22" hostname="rijul-ThinkPad-T470" time="0.315">
+  <properties/>
+  <testcase name="testReferencedGroupingChanged" classname="io.typefox.yang.tests.validation.AffectionTest" time="0.179"/>
+  <testcase name="testReferencedModuleRenamed_01" classname="io.typefox.yang.tests.validation.AffectionTest" time="0.136"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.completion.SchemaPathCompletionTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:08:11" hostname="rijul-ThinkPad-T470" time="1.479">
+  <properties/>
+  <testcase name="testRelativeCompletion" classname="io.typefox.yang.tests.completion.SchemaPathCompletionTest" time="0.518"/>
+  <testcase name="testNodeCompletion_01" classname="io.typefox.yang.tests.completion.SchemaPathCompletionTest" time="0.285"/>
+  <testcase name="testNodeCompletion_02" classname="io.typefox.yang.tests.completion.SchemaPathCompletionTest" time="0.207"/>
+  <testcase name="testNodeCompletion_03" classname="io.typefox.yang.tests.completion.SchemaPathCompletionTest" time="0.213"/>
+  <testcase name="testNodeCompletion_04" classname="io.typefox.yang.tests.completion.SchemaPathCompletionTest" time="0.256"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

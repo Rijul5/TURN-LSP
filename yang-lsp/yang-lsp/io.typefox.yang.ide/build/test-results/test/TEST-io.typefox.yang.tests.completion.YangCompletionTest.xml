@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.completion.YangCompletionTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:08:12" hostname="rijul-ThinkPad-T470" time="1.4">
+  <properties/>
+  <testcase name="testGroupingCompletion_01" classname="io.typefox.yang.tests.completion.YangCompletionTest" time="0.228"/>
+  <testcase name="testGroupingCompletion_02" classname="io.typefox.yang.tests.completion.YangCompletionTest" time="0.229"/>
+  <testcase name="testImportedGroupingCompletion" classname="io.typefox.yang.tests.completion.YangCompletionTest" time="0.172"/>
+  <testcase name="testTypeCompletion_01" classname="io.typefox.yang.tests.completion.YangCompletionTest" time="0.318"/>
+  <testcase name="testTypeCompletion_02" classname="io.typefox.yang.tests.completion.YangCompletionTest" time="0.185"/>
+  <testcase name="testTypeCompletion_03" classname="io.typefox.yang.tests.completion.YangCompletionTest" time="0.104"/>
+  <testcase name="testTypeCompletion_04" classname="io.typefox.yang.tests.completion.YangCompletionTest" time="0.164"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,14 @@
+io.typefox.yang.ide
+io.typefox.yang.ide.codeAction
+io.typefox.yang.ide.codelens
+io.typefox.yang.ide.completion
+io.typefox.yang.ide.contentassist.antlr
+io.typefox.yang.ide.contentassist.antlr.internal
+io.typefox.yang.ide.contentassist.antlr.lexer
+io.typefox.yang.ide.contentassist.antlr.lexer.jflex
+io.typefox.yang.ide.editor.syntaxcoloring
+io.typefox.yang.ide.extensions
+io.typefox.yang.ide.formatting
+io.typefox.yang.ide.rename
+io.typefox.yang.ide.server
+io.typefox.yang.ide.symbols

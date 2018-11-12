@@ -1,0 +1,24 @@
+submodule t-meta-extensions {
+
+  belongs-to t-common {
+    prefix t;
+  }
+
+  extension use-in {
+  }
+  
+  extension arg-type {
+    t:use-in "argument";
+    t:substatement "type";
+  }
+
+  extension substatement {
+    argument name {
+      t:arg-type {
+        type string;
+      }
+    }
+    t:use-in "extension";
+  }
+  
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.formatter.YangFormatterTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:39" hostname="rijul-ThinkPad-T470" time="0.707">
+  <properties/>
+  <testcase name="test_typedef" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.277"/>
+  <testcase name="test_pattern" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.023"/>
+  <testcase name="test_indentation" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.084"/>
+  <testcase name="test_uses_augment" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.047"/>
+  <testcase name="test_revision" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.028"/>
+  <testcase name="test_description" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.007"/>
+  <testcase name="test_augment_path" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.018"/>
+  <testcase name="test_version" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.011"/>
+  <testcase name="test_reference" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.009"/>
+  <testcase name="test_refinable" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.032"/>
+  <testcase name="test_contact" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.014"/>
+  <testcase name="test_new_lines" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.017"/>
+  <testcase name="test_organization" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.009"/>
+  <testcase name="test_namespace_and_prefix" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.009"/>
+  <testcase name="test_xpath" classname="io.typefox.yang.tests.formatter.YangFormatterTest" time="0.071"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

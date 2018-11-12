@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.linking.KeyLinkingTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:44" hostname="rijul-ThinkPad-T470" time="0.03">
+  <properties/>
+  <testcase name="testLeafLinking" classname="io.typefox.yang.tests.linking.KeyLinkingTest" time="0.017"/>
+  <testcase name="testLeafLinking_02" classname="io.typefox.yang.tests.linking.KeyLinkingTest" time="0.013"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

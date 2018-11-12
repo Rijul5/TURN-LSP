@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.completion.XpathCompletionTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:08:18" hostname="rijul-ThinkPad-T470" time="2.086">
+  <properties/>
+  <testcase name="testFunctionProposalsNeedPrefix" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.192"/>
+  <testcase name="testAbsolute" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.143"/>
+  <testcase name="testAxis_01" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.107"/>
+  <testcase name="testAxis_02" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.15"/>
+  <testcase name="testAxis_03" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.122"/>
+  <testcase name="testAxis_04" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.131"/>
+  <testcase name="testAxis_05" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.109"/>
+  <testcase name="testAxis_06" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.145"/>
+  <testcase name="testAxis_07" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.127"/>
+  <testcase name="testAxis_08" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.175"/>
+  <testcase name="testFilter_01" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.159"/>
+  <testcase name="testRelative" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.206"/>
+  <testcase name="testRelative_01" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.139"/>
+  <testcase name="testFilter" classname="io.typefox.yang.tests.completion.XpathCompletionTest" time="0.18"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

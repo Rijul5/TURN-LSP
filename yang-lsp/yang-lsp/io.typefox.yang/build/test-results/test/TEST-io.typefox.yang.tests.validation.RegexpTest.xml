@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.validation.RegexpTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:43" hostname="rijul-ThinkPad-T470" time="0.033">
+  <properties/>
+  <testcase name="testIllegalPattern_0" classname="io.typefox.yang.tests.validation.RegexpTest" time="0.005"/>
+  <testcase name="testIllegalPattern_1" classname="io.typefox.yang.tests.validation.RegexpTest" time="0.004"/>
+  <testcase name="testLegalPattern_0" classname="io.typefox.yang.tests.validation.RegexpTest" time="0.004"/>
+  <testcase name="testLegalPattern_1" classname="io.typefox.yang.tests.validation.RegexpTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

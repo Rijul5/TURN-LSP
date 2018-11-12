@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.rename.RenameTest" tests="2" skipped="1" failures="0" errors="0" timestamp="2018-11-08T13:08:21" hostname="rijul-ThinkPad-T470" time="1.028">
+  <properties/>
+  <testcase name="testRenameInput" classname="io.typefox.yang.tests.rename.RenameTest" time="1.028"/>
+  <testcase name="testRenameInputAugment" classname="io.typefox.yang.tests.rename.RenameTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

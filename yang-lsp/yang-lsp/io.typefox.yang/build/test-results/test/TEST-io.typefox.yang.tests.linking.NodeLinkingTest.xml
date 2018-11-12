@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.linking.NodeLinkingTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:44" hostname="rijul-ThinkPad-T470" time="0.034">
+  <properties/>
+  <testcase name="testDuplicateNodeNames_01" classname="io.typefox.yang.tests.linking.NodeLinkingTest" time="0.008"/>
+  <testcase name="testDuplicateNodeNames_02" classname="io.typefox.yang.tests.linking.NodeLinkingTest" time="0.006"/>
+  <testcase name="testDuplicateNodeNames_03" classname="io.typefox.yang.tests.linking.NodeLinkingTest" time="0.004"/>
+  <testcase name="testDuplicateNodeNames_04" classname="io.typefox.yang.tests.linking.NodeLinkingTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

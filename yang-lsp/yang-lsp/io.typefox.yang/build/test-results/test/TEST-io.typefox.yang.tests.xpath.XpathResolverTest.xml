@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.xpath.XpathResolverTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:43" hostname="rijul-ThinkPad-T470" time="0.219">
+  <properties/>
+  <testcase name="testDescendant" classname="io.typefox.yang.tests.xpath.XpathResolverTest" time="0.006"/>
+  <testcase name="testParents" classname="io.typefox.yang.tests.xpath.XpathResolverTest" time="0.02"/>
+  <testcase name="testMust" classname="io.typefox.yang.tests.xpath.XpathResolverTest" time="0.014"/>
+  <testcase name="testRootRef" classname="io.typefox.yang.tests.xpath.XpathResolverTest" time="0.013"/>
+  <testcase name="testGrouping" classname="io.typefox.yang.tests.xpath.XpathResolverTest" time="0.08"/>
+  <testcase name="testSibling" classname="io.typefox.yang.tests.xpath.XpathResolverTest" time="0.037"/>
+  <testcase name="testSimple" classname="io.typefox.yang.tests.xpath.XpathResolverTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

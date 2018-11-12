@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.symbols.DefinitionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:08:10" hostname="rijul-ThinkPad-T470" time="0.732">
+  <properties/>
+  <testcase name="testDefinition" classname="io.typefox.yang.tests.symbols.DefinitionTest" time="0.275"/>
+  <testcase name="testDefinition_01" classname="io.typefox.yang.tests.symbols.DefinitionTest" time="0.228"/>
+  <testcase name="testDefinition_02" classname="io.typefox.yang.tests.symbols.DefinitionTest" time="0.229"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

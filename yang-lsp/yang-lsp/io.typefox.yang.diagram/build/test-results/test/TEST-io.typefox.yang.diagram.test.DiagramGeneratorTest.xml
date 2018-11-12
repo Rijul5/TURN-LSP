@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.diagram.test.DiagramGeneratorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:07:16" hostname="rijul-ThinkPad-T470" time="0.4">
+  <properties/>
+  <testcase name="testGenerator" classname="io.typefox.yang.diagram.test.DiagramGeneratorTest" time="0.4"/>
+  <system-out><![CDATA[0    [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - Generating diagram for input: '__synthetic1.yang'
+84   [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@6f3c53d2 (name: ip) WITH ID mytest:myt-node-grouping-endpoint-ip
+90   [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@69f51e16 (name: port) WITH ID mytest:myt-node-grouping-endpoint-port
+92   [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.GroupingImpl@77c40010 (name: endpoint) WITH ID mytest:myt-node-grouping-endpoint
+93   [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@3a695a03 (name: anotherGroupLeaf) WITH ID mytest:myt-node-grouping-anotherGroup-anotherGroupLeaf
+93   [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.GroupingImpl@5cccfb78 (name: anotherGroup) WITH ID mytest:myt-node-grouping-anotherGroup
+107  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@39c02be3 (name: augmentLeaf) WITH ID mytest:myt-node-/myt:testcontainer-augmentation-augmentLeaf
+109  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.AugmentImpl@4a862fa8 WITH ID mytest:myt-node-/myt:testcontainer-augmentation
+111  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.UsesImpl@23450fe6 WITH ID mytest:myt-node-/myt:testcontainer/myt:innerTestContainer-augmentation-uses mytest2Group-pill
+111  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.AugmentImpl@58c58f49 WITH ID mytest:myt-node-/myt:testcontainer/myt:innerTestContainer-augmentation
+112  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@15d9b192 (name: blaLeaf) WITH ID mytest:myt-node-/myt2:bla-augmentation-blaLeaf
+112  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.AugmentImpl@5deaad5d WITH ID mytest:myt-node-/myt2:bla-augmentation
+113  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@565bb339 (name: testleaf) WITH ID mytest:myt-node-container-testcontainer-testleaf
+114  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafListImpl@2210c17c (name: leafList) WITH ID mytest:myt-node-container-testcontainer-container-innerTestContainer-leafList
+114  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@7a1da18d (name: anotherLeaf) WITH ID mytest:myt-node-container-testcontainer-container-innerTestContainer-anotherLeaf
+116  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@5d63e9a0 (name: keyLeaf) WITH ID mytest:myt-node-container-testcontainer-container-innerTestContainer-list-innerTestList-keyLeaf
+117  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.LeafImpl@4a652a48 (name: meAlone) WITH ID mytest:myt-node-container-testcontainer-container-innerTestContainer-list-innerTestList-container-listContainer-meAlone
+117  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.ContainerImpl@13773319 (name: listContainer) WITH ID mytest:myt-node-container-testcontainer-container-innerTestContainer-list-innerTestList-container-listContainer
+118  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.ListImpl@c5277dd (name: innerTestList) WITH ID mytest:myt-node-container-testcontainer-container-innerTestContainer-list-innerTestList
+119  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.ContainerImpl@4ebeb11e (name: innerTestContainer) WITH ID mytest:myt-node-container-testcontainer-container-innerTestContainer
+120  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.ContainerImpl@2d6af5eb (name: testcontainer) WITH ID mytest:myt-node-container-testcontainer
+120  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.UsesImpl@72fe4a4 WITH ID mytest:myt-node-container-groupingTest-uses anotherGroup-pill
+122  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.ContainerImpl@185c8703 (name: groupingTest) WITH ID mytest:myt-node-container-groupingTest
+123  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.UsesImpl@211c5a26 WITH ID mytest:myt-node-container-externalGroupingTest-uses mytest2Group-pill
+124  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.ContainerImpl@5d84b599 (name: externalGroupingTest) WITH ID mytest:myt-node-container-externalGroupingTest
+125  [Test worker] INFO  x.yang.diagram.YangDiagramGenerator  - CREATED ELEMENT FOR statement:io.typefox.yang.yang.impl.ModuleImpl@71e33e35 (name: mytest) WITH ID mytest:myt
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.YangExtensionsTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:40" hostname="rijul-ThinkPad-T470" time="0.252">
+  <properties/>
+  <testcase name="checkExplicitVersion_Expect_1_1" classname="io.typefox.yang.tests.YangExtensionsTest" time="0.221"/>
+  <testcase name="checkExplicitVersion_Broken_Expect_Null" classname="io.typefox.yang.tests.YangExtensionsTest" time="0.001"/>
+  <testcase name="checkImplicitVersion_Expect_1" classname="io.typefox.yang.tests.YangExtensionsTest" time="0.006"/>
+  <testcase name="checkExplicitVersion_Invalid_Expect_Null" classname="io.typefox.yang.tests.YangExtensionsTest" time="0.01"/>
+  <testcase name="checkExplicitVersion_Expect_1" classname="io.typefox.yang.tests.YangExtensionsTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

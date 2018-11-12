@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.YangParsingTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:43" hostname="rijul-ThinkPad-T470" time="0.325">
+  <properties/>
+  <testcase name="testXpath_02" classname="io.typefox.yang.tests.YangParsingTest" time="0.075"/>
+  <testcase name="testParse" classname="io.typefox.yang.tests.YangParsingTest" time="0.049"/>
+  <testcase name="testXpath" classname="io.typefox.yang.tests.YangParsingTest" time="0.03"/>
+  <testcase name="testCustom" classname="io.typefox.yang.tests.YangParsingTest" time="0.026"/>
+  <testcase name="testParseRange_01" classname="io.typefox.yang.tests.YangParsingTest" time="0.005"/>
+  <testcase name="testParseRange_02" classname="io.typefox.yang.tests.YangParsingTest" time="0.018"/>
+  <testcase name="testParseRange_03" classname="io.typefox.yang.tests.YangParsingTest" time="0.007"/>
+  <testcase name="testParseRange_04" classname="io.typefox.yang.tests.YangParsingTest" time="0.01"/>
+  <testcase name="testParseRange_05" classname="io.typefox.yang.tests.YangParsingTest" time="0.011"/>
+  <testcase name="testParseRange_06" classname="io.typefox.yang.tests.YangParsingTest" time="0.013"/>
+  <testcase name="testParseRange_07" classname="io.typefox.yang.tests.YangParsingTest" time="0.012"/>
+  <testcase name="testParseRange_08" classname="io.typefox.yang.tests.YangParsingTest" time="0.018"/>
+  <testcase name="testParseRange_09" classname="io.typefox.yang.tests.YangParsingTest" time="0.003"/>
+  <testcase name="testParseRange_10" classname="io.typefox.yang.tests.YangParsingTest" time="0.019"/>
+  <testcase name="testParseRange_11" classname="io.typefox.yang.tests.YangParsingTest" time="0.004"/>
+  <testcase name="testParseRange_12" classname="io.typefox.yang.tests.YangParsingTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

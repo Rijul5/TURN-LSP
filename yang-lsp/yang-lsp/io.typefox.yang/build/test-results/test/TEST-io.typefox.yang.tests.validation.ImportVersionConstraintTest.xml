@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.validation.ImportVersionConstraintTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:44" hostname="rijul-ThinkPad-T470" time="0.109">
+  <properties/>
+  <testcase name="testIncludeVersion_0" classname="io.typefox.yang.tests.validation.ImportVersionConstraintTest" time="0.032"/>
+  <testcase name="testIncludeVersion_1" classname="io.typefox.yang.tests.validation.ImportVersionConstraintTest" time="0.045"/>
+  <testcase name="testImportVersion" classname="io.typefox.yang.tests.validation.ImportVersionConstraintTest" time="0.019"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

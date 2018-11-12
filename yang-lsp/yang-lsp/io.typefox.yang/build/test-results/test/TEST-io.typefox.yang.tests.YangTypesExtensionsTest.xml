@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.YangTypesExtensionsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:43" hostname="rijul-ThinkPad-T470" time="0.085">
+  <properties/>
+  <testcase name="checkBuiltin_True" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.005"/>
+  <testcase name="checkSubtypeOfInteger_01" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.011"/>
+  <testcase name="checkSubtypeOfInteger_02" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.004"/>
+  <testcase name="checkSubtypeOfInteger_03" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.005"/>
+  <testcase name="checkSubtypeOfInteger_04" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.016"/>
+  <testcase name="checkYangRange_01" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.005"/>
+  <testcase name="checkYangRange_02" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.004"/>
+  <testcase name="checkYangRange_03" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.007"/>
+  <testcase name="checkBuiltin_False" classname="io.typefox.yang.tests.YangTypesExtensionsTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

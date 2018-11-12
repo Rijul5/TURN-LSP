@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.linking.GroupingLinkingTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:44" hostname="rijul-ThinkPad-T470" time="0.04">
+  <properties/>
+  <testcase name="testNestedUse" classname="io.typefox.yang.tests.linking.GroupingLinkingTest" time="0.01"/>
+  <testcase name="testNestedUse_02" classname="io.typefox.yang.tests.linking.GroupingLinkingTest" time="0.008"/>
+  <testcase name="testNestedUse_03" classname="io.typefox.yang.tests.linking.GroupingLinkingTest" time="0.02"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

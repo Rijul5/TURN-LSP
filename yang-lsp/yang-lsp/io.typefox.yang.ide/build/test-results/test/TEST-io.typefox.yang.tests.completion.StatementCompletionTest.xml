@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.completion.StatementCompletionTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:08:14" hostname="rijul-ThinkPad-T470" time="4.542">
+  <properties/>
+  <testcase name="testStatement_01" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.171"/>
+  <testcase name="testStatement_02" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.158"/>
+  <testcase name="testStatement_03" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.335"/>
+  <testcase name="testStatement_04" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.482"/>
+  <testcase name="testStatement_05" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.478"/>
+  <testcase name="testStatement_06" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.438"/>
+  <testcase name="testStatement_07" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.344"/>
+  <testcase name="testStatement_08" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.133"/>
+  <testcase name="testStatement_09" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.28"/>
+  <testcase name="testStatement_10" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.231"/>
+  <testcase name="testStatement_11" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.4"/>
+  <testcase name="testStatement_12" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.458"/>
+  <testcase name="testStatement_13" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.269"/>
+  <testcase name="testStatement_14" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.211"/>
+  <testcase name="testStatement_15" classname="io.typefox.yang.tests.completion.StatementCompletionTest" time="0.14"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

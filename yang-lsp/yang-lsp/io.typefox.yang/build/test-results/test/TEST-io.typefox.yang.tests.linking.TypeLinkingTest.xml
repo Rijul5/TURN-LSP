@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.linking.TypeLinkingTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:44" hostname="rijul-ThinkPad-T470" time="0.072">
+  <properties/>
+  <testcase name="testNestTypeLinking_02" classname="io.typefox.yang.tests.linking.TypeLinkingTest" time="0.012"/>
+  <testcase name="testNestTypeLinking_03" classname="io.typefox.yang.tests.linking.TypeLinkingTest" time="0.015"/>
+  <testcase name="testTypeLinking_02" classname="io.typefox.yang.tests.linking.TypeLinkingTest" time="0.016"/>
+  <testcase name="testTypeLinking" classname="io.typefox.yang.tests.linking.TypeLinkingTest" time="0.023"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

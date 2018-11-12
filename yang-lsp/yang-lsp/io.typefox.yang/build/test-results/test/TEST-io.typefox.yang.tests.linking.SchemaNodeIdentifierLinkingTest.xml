@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.linking.SchemaNodeIdentifierLinkingTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:44" hostname="rijul-ThinkPad-T470" time="0.051">
+  <properties/>
+  <testcase name="testImplicitCase" classname="io.typefox.yang.tests.linking.SchemaNodeIdentifierLinkingTest" time="0.014"/>
+  <testcase name="testMultiModuleAugments" classname="io.typefox.yang.tests.linking.SchemaNodeIdentifierLinkingTest" time="0.025"/>
+  <testcase name="testLocalAugments" classname="io.typefox.yang.tests.linking.SchemaNodeIdentifierLinkingTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

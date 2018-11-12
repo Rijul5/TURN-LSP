@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.LexerTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:46" hostname="rijul-ThinkPad-T470" time="0.017">
+  <properties/>
+  <testcase name="test_DoubleQuotedString" classname="io.typefox.yang.tests.LexerTest" time="0.001"/>
+  <testcase name="test_Comments" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="testKeyExpression" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="test_SignedRangeExpression" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="testLexer" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="testExpressionString" classname="io.typefox.yang.tests.LexerTest" time="0.009"/>
+  <testcase name="test_SingleQuotedString" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="testBlackBoxDQString" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="test_MinMaxRangeExpression" classname="io.typefox.yang.tests.LexerTest" time="0.001"/>
+  <testcase name="testExpressionSQString" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="testCustomStatement" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="testNonExpression" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="test_singleQuotedString" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <testcase name="testString" classname="io.typefox.yang.tests.LexerTest" time="0.001"/>
+  <testcase name="testExpression" classname="io.typefox.yang.tests.LexerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

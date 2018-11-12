@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.serializer.ModuleSerializeTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:44" hostname="rijul-ThinkPad-T470" time="1.848">
+  <properties/>
+  <testcase name="testSerializeUpdatedModule" classname="io.typefox.yang.tests.serializer.ModuleSerializeTest" time="1.388"/>
+  <testcase name="testTestgrp3" classname="io.typefox.yang.tests.serializer.ModuleSerializeTest" time="0.07"/>
+  <testcase name="testSerializeNewModule" classname="io.typefox.yang.tests.serializer.ModuleSerializeTest" time="0.132"/>
+  <testcase name="testSerializeDeviationAction" classname="io.typefox.yang.tests.serializer.ModuleSerializeTest" time="0.118"/>
+  <testcase name="testSerializeOriginalXPath" classname="io.typefox.yang.tests.serializer.ModuleSerializeTest" time="0.12"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

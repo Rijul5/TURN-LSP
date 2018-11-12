@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.formatter.MultilineStringTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:40" hostname="rijul-ThinkPad-T470" time="0.173">
+  <properties/>
+  <testcase name="test_indentation_1a" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.01"/>
+  <testcase name="test_indentation_1b" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.008"/>
+  <testcase name="test_option_forceNewLine_on" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.007"/>
+  <testcase name="test_option_forceNewLine_off" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.009"/>
+  <testcase name="test_SL_concatenation" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.007"/>
+  <testcase name="test_indentation_2" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.008"/>
+  <testcase name="test_indentation_3" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.007"/>
+  <testcase name="test_indentation_4" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.011"/>
+  <testcase name="test_indentation_5" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.006"/>
+  <testcase name="test_ML_indentation_1" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.014"/>
+  <testcase name="test_ML_indentation_2" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.008"/>
+  <testcase name="test_ML_indentation_3" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.006"/>
+  <testcase name="test_ML_indentation_4" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.01"/>
+  <testcase name="test_ML_indentation_5" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.008"/>
+  <testcase name="test_ML_indentation_6" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.01"/>
+  <testcase name="test_ML_indentation_7" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.007"/>
+  <testcase name="test_ML_indentation_8" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.008"/>
+  <testcase name="test_ML_indentation_9" classname="io.typefox.yang.tests.formatter.MultilineStringTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

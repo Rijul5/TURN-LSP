@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.YangNameUtilsTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:43" hostname="rijul-ThinkPad-T470" time="0.001">
+  <properties/>
+  <testcase name="check_escapeModuleName_01" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.001"/>
+  <testcase name="check_escapeModuleName_02" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.0"/>
+  <testcase name="check_escapeModuleName_03" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.0"/>
+  <testcase name="check_escapeModuleName_04" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.0"/>
+  <testcase name="check_escapeModuleName_05" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.0"/>
+  <testcase name="check_escapeModuleName_06" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.0"/>
+  <testcase name="check_escapeModuleName_07" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.0"/>
+  <testcase name="check_escapeModuleName_08" classname="io.typefox.yang.tests.YangNameUtilsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

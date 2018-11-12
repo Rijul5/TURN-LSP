@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.typefox.yang.tests.formatter.ExampleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-08T13:06:40" hostname="rijul-ThinkPad-T470" time="0.312">
+  <properties/>
+  <testcase name="test_example_model" classname="io.typefox.yang.tests.formatter.ExampleTest" time="0.312"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
