@@ -1,0 +1,37 @@
+/*
+ * Copyright (C) 2017 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+.sprotty-node {
+    fill: #aae;
+    stroke: #66b;
+    stroke-width: 3;
+}
+
+.sprotty-text {
+    font-size: 16pt;
+    text-anchor: middle;
+}
+
+.sprotty-edge {
+    fill: none;
+    stroke: #488;
+    stroke-width: 2;
+}
+
+.sprotty-node.selected {
+    stroke: #dd8;
+    stroke-width: 6;
+}
+
+.sprotty-missing {
+    stroke-width: 1;
+    stroke: #f00;
+    fill: #f00;
+    font-family: SansSerif;
+    font-size: 14pt;
+    text-anchor: middle;
+}

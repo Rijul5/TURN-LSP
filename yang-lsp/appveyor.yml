@@ -1,0 +1,15 @@
+shallow_clone: true
+
+branches:
+  only:
+  - master
+
+platform:
+  - x64
+
+build_script:
+  - ./yang-lsp/gradlew.bat -p yang-lsp build --refresh-dependencies --no-daemon
+
+cache:
+ - C:\Users\appveyor\.gradle
+ - C:\Users\appveyor\.m2
